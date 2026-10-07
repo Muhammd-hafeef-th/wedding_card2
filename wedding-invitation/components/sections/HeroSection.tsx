@@ -94,7 +94,7 @@ export default function HeroSection({ wedding, venue }: HeroSectionProps) {
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               >
-                {wedding.brideFirstName}
+                {wedding.brideFirstName || "Shifa kr"}
               </motion.h1>
 
             </motion.div>
@@ -128,7 +128,7 @@ export default function HeroSection({ wedding, venue }: HeroSectionProps) {
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
-                {wedding.groomFirstName}
+                {wedding.groomFirstName || "Ajmal"}
               </motion.h1>
 
             </motion.div>

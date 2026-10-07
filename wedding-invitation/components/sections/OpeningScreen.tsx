@@ -313,7 +313,7 @@ export default function OpeningScreen({ wedding, onOpen }: OpeningScreenProps) {
                       fontSize: "clamp(2.8rem, 10vw, 4rem)",
                       color: "#F8F0E3", lineHeight: 1.1, fontWeight: 400,
                     }}>
-                      {wedding.groomFirstName || 'Dilshad'} &amp; {wedding.brideFirstName || 'Shadha'}
+                      {wedding.groomFirstName || 'Ajmal'} &amp; {wedding.brideFirstName || 'Shifa kr'}
                     </h1>
                   </div>
 

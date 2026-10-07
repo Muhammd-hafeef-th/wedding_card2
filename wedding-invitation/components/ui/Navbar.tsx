@@ -26,7 +26,7 @@ export default function Navbar({ wedding }: NavbarProps) {
   const year = dateObj.getFullYear();
   const romanYear = romanize(year);
 
-  const groomInit = wedding?.groomFirstName?.[0] || "S";
+  const groomInit = wedding?.groomFirstName?.[0] || "A";
   const brideInit = wedding?.brideFirstName?.[0] || "S";
 
   return (

@@ -38,10 +38,10 @@ export interface IWedding extends Document {
 const WeddingSchema = new Schema<IWedding>(
   {
     title: { type: String, default: "We Are Getting Married" },
-    brideFirstName: { type: String, default: "Zara" },
-    brideLastName: { type: String, default: "Khan" },
-    groomFirstName: { type: String, default: "Aryan" },
-    groomLastName: { type: String, default: "Sharma" },
+    brideFirstName: { type: String, default: "Shifa kr" },
+    brideLastName: { type: String, default: "" },
+    groomFirstName: { type: String, default: "Ajmal" },
+    groomLastName: { type: String, default: "" },
     date: { type: String, default: "2025-12-20" },
     time: { type: String, default: "18:00" },
     nikkahDate: { type: String, default: "" },

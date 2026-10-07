@@ -19,9 +19,9 @@ import { motion, AnimatePresence } from "framer-motion";
 // Default data fallback so page renders even without DB
 const DEFAULT_WEDDING: WeddingData = {
   title: "We Are Getting Married",
-  brideFirstName: "",
+  brideFirstName: "Shifa kr",
   brideLastName: "",
-  groomFirstName: "",
+  groomFirstName: "Ajmal",
   groomLastName: "",
   date: "2025-12-20",
   time: "18:00",

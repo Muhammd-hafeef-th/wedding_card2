@@ -45,7 +45,7 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
             >
               <span className="family-role">Bride</span>
               <h4 className="family-member-name">
-                {wedding.brideFirstName}
+                {wedding.brideFirstName || "Shifa kr"}
               </h4>
               <span className="family-relation">Daughter of</span>
               <p className="family-parents">
@@ -106,7 +106,7 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
             >
               <span className="family-role">Groom</span>
               <h4 className="family-member-name">
-                {wedding.groomFirstName}
+                {wedding.groomFirstName || "Ajmal"}
               </h4>
               <span className="family-relation">Son of</span>
               <p className="family-parents">

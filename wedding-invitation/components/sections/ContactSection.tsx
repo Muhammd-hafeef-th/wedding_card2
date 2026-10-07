@@ -29,7 +29,7 @@ const contacts: ContactLink[] = [
   {
     icon: "📸",
     label: "Instagram",
-    value: "@aryan.weds.zara",
+    value: "@ajmal.weds.shifa",
     href: "https://instagram.com",
     color: "#E1306C",
   },

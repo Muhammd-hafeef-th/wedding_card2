@@ -124,7 +124,7 @@ export default function ItinerarySection({ wedding, venue }: ItinerarySectionPro
     const icsContent = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
-      "PRODID:-//Aryan Zara Wedding//NONSGML v1.0//EN",
+      "PRODID:-//Ajmal Shifa Wedding//NONSGML v1.0//EN",
       "BEGIN:VEVENT",
       `SUMMARY:${title}`,
       `DTSTART:${dates.start}`,

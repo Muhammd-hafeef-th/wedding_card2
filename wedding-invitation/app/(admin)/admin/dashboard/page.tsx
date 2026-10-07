@@ -22,8 +22,8 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats>({
     weddingDate: "2025-12-20",
     weddingTime: "18:00",
-    brideName: "Zara",
-    groomName: "Aryan",
+    brideName: "Shifa kr",
+    groomName: "Ajmal",
     rsvpCount: 0,
     wishesCount: 0,
     pendingWishes: 0,

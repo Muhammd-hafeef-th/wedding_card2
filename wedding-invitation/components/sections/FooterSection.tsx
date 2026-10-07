@@ -106,7 +106,7 @@ export default function FooterSection({ wedding }: FooterSectionProps) {
               color: "var(--text-main)",
             }}
           >
-            {wedding.brideFirstName} &amp; {wedding.groomFirstName}
+            {wedding.brideFirstName || "Shifa kr"} &amp; {wedding.groomFirstName || "Ajmal"}
           </h2>
         </motion.div>
 
