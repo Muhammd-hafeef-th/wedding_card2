@@ -45,13 +45,11 @@ export default function SectionTitle({
       )}
 
       <h2
-        className="font-light"
+        className="font-script font-normal leading-tight"
         style={{
-          fontFamily: "'Great Vibes', cursive",
-          fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-          lineHeight: 1,
-          color: "var(--gold)",
-          letterSpacing: "0",
+          fontSize: "clamp(2.5rem, 5vw, 4rem)",
+          color: "#EBDCBA",
+          textShadow: "0 2px 10px rgba(0,0,0,0.3)",
         }}
       >
         {title}

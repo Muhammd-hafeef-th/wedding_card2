@@ -1,5 +1,4 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { WeddingData } from "@/types";
 
@@ -7,50 +6,32 @@ interface NavbarProps {
   wedding: WeddingData;
 }
 
-const romanize = (num: number) => {
-  if (isNaN(num)) return "";
-  const digits = String(+num).split(""),
-    key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
-      "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
-      "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
-  let roman = "",
-    i = 3;
-  while (i--)
-    roman = (key[+(digits.pop() || 0) + (i * 10)] || "") + roman;
-  return Array(+(digits.join("") || 0) + 1).join("M") + roman;
-};
-
 export default function Navbar({ wedding }: NavbarProps) {
-  const dateObj = wedding?.date ? new Date(wedding.date) : new Date("2026-07-19");
-  const month = dateObj.toLocaleDateString("en-US", { month: "long" }).toUpperCase();
-  const year = dateObj.getFullYear();
-  const romanYear = romanize(year);
-
-  const groomInit = wedding?.groomFirstName?.[0] || "A";
-  const brideInit = wedding?.brideFirstName?.[0] || "S";
+  const brideInit = wedding?.brideFirstName?.[0] || "К";
+  const groomInit = wedding?.groomFirstName?.[0] || "А";
 
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 1 }}
-      className="fixed top-0 left-0 w-full z-50 flex justify-between items-center pointer-events-none"
+      transition={{ duration: 0.8, delay: 0.5 }}
+      className="fixed top-0 left-0 w-full z-40 flex justify-between items-center pointer-events-none px-4 sm:px-8 py-3.5"
       style={{
-        background: "transparent",
-        padding: "0.85rem 1rem",
+        background: "linear-gradient(180deg, rgba(30, 40, 24, 0.75) 0%, transparent 100%)",
+        backdropFilter: "blur(6px)",
       }}
     >
       <div
-        className="font-heading italic pointer-events-auto"
-        style={{ color: "var(--gold)", fontSize: "1.4rem", fontWeight: 400, letterSpacing: "0.02em" }}
+        className="font-script pointer-events-auto text-[#EBDCBA]"
+        style={{ fontSize: "1.6rem", letterSpacing: "0.05em" }}
       >
-        {groomInit}&amp;{brideInit}
+        {brideInit} &amp; {groomInit}
       </div>
       <div
-        className="font-body uppercase pointer-events-auto"
-        style={{ color: "var(--text-muted)", fontSize: "9px", letterSpacing: "0.3em" }}
+        className="font-body uppercase pointer-events-auto text-[#F5EFEB]/70"
+        style={{ fontSize: "9px", letterSpacing: "0.3em" }}
       >
-        {month} &middot; {romanYear}
+        save the date
       </div>
     </motion.nav>
   );

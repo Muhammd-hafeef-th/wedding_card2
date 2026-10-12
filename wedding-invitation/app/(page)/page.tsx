@@ -18,26 +18,27 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // Default data fallback so page renders even without DB
 const DEFAULT_WEDDING: WeddingData = {
-  title: "We Are Getting Married",
-  brideFirstName: "Shifa kr",
+  title: "Wedding Invitation",
+  brideFirstName: "Ksenia",
   brideLastName: "",
-  groomFirstName: "Ajmal",
+  groomFirstName: "Andrey",
   groomLastName: "",
-  date: "2025-12-20",
-  time: "18:00",
-  venue: "The Grand Palace, New Delhi",
-  subtitle: "Two souls, one destiny",
-  invitationText: "Together with their families, we joyfully invite you to celebrate the union of",
-  bridePaternalGrandparents: "Mangalathel Moidutty & Hafsa Naranath",
-  brideMaternalGrandparents: "MT Seethi Master & Ayshakutty",
-  groomPaternalGrandparents: "Late Veeran Kurikkal & Late Kunjathutty Hajjuma",
-  groomMaternalGrandparents: "Late Hamza Haji MC & Late Ummaathutti Hajjuma",
+  date: "2026-10-01",
+  time: "15:30",
+  venue: "The Grand Estate & Country Club",
+  subtitle: "Where our forever begins",
+  invitationText: "Together with our families, we warmly invite you to celebrate our wedding. We would be truly honored to have you share this unforgettable day with us.",
+  bridePhotoUrl: "/images/cameo-portrait.jpg",
+  brideFatherName: "Alexander",
+  brideMotherName: "Elena",
+  groomFatherName: "Sergey",
+  groomMotherName: "Olga",
 };
 
 const DEFAULT_VENUE: VenueData = {
-  name: "The Grand Palace",
-  address: "123 Royal Avenue, Connaught Place, New Delhi 110001, India",
-  googleMapLink: "https://maps.google.com",
+  name: "The Grand Estate & Country Club",
+  address: "120 Royal Meadows Parkway, Riverside Estate",
+  googleMapLink: "https://maps.google.com/?q=The+Grand+Estate",
   googleMapEmbed: "",
   parkingInfo: "Complimentary valet parking available",
   accommodation: "Guest accommodations arranged at the venue hotel",
@@ -115,14 +116,13 @@ export default function InvitationPage() {
             <Navbar wedding={wedding} />
             <BackgroundEffects />
             <HeroSection wedding={wedding} venue={venue} />
-            {gallery.length > 0 && <Gallery items={gallery} />}
-            <ItinerarySection wedding={wedding} venue={venue} />
             <VenueSection venue={venue} />
+            <ItinerarySection wedding={wedding} venue={venue} />
             <CountdownSection wedding={wedding} />
-            <RSVPSection />
-
-            <FamilySection wedding={wedding} />
             <WishesSection />
+            <RSVPSection />
+            {gallery.length > 0 && <Gallery items={gallery} />}
+            <FamilySection wedding={wedding} />
             <FooterSection wedding={wedding} />
           </motion.div>
         )}

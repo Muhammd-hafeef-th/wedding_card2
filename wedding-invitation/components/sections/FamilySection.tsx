@@ -1,66 +1,71 @@
 "use client";
 // components/sections/FamilySection.tsx
 import { motion } from "framer-motion";
-import SectionTitle from "@/components/ui/SectionTitle";
 import { WeddingData } from "@/types";
+import { VintageFlourish } from "@/components/ui/BotanicalOrnaments";
 
 interface FamilySectionProps {
   wedding: WeddingData;
 }
 
 export default function FamilySection({ wedding }: FamilySectionProps) {
-  // Helper to format parents names nicely
   const formatParents = (father?: string, mother?: string, defaultText = "") => {
     if (!father && !mother) return defaultText;
     if (father && mother) {
-      const fName = father.trim();
-      const mName = mother.trim();
-      return `${fName} & ${mName}`;
+      return `${father.trim()} & ${mother.trim()}`;
     }
     return father || mother || "";
   };
 
+  const brideParents = formatParents(
+    wedding.brideFatherName,
+    wedding.brideMotherName,
+    "Alexander & Elena"
+  );
+
+  const groomParents = formatParents(
+    wedding.groomFatherName,
+    wedding.groomMotherName,
+    "Sergey & Olga"
+  );
+
   return (
     <section id="families" className="section-padding relative">
-      <div className="container-luxury relative z-10">
-        
+      <div className="container-luxury relative z-10 flex flex-col items-center">
         {/* Section Heading */}
-        <div style={{ marginBottom: "4rem" }}>
-          <SectionTitle
-            eyebrow="With the blessings of"
-            title="Our Families"
-          />
+        <div className="text-center mb-10">
+          <h2 className="font-script text-4xl sm:text-5xl text-[#F5EFEB] mb-2 leading-tight">
+            With the Blessings of Our Families
+          </h2>
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-[#D7CEBA] opacity-80">
+            Our Beloved Parents
+          </p>
+          <div className="flex justify-center mt-3">
+            <VintageFlourish color="#C8BEA8" width={110} />
+          </div>
         </div>
 
         <div className="family-wrapper">
           <div className="family-grid">
-            
             {/* Bride's Family Card */}
             <motion.div
               className="family-card"
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8 }}
             >
-              <span className="family-role">Bride</span>
+              <span className="family-role">Bride&apos;s Family</span>
               <h4 className="family-member-name">
-                {wedding.brideFirstName || "Shifa kr"}
+                {wedding.brideFirstName || "Ksenia"}
               </h4>
               <span className="family-relation">Daughter of</span>
-              <p className="family-parents">
-                {formatParents(
-                  wedding.brideFatherName,
-                  wedding.brideMotherName,
-                  "Mr. Mohamed Ismail & Mrs. Khadeeja Ismail"
-                )}
-              </p>
+              <p className="family-parents">{brideParents}</p>
 
               {(wedding.bridePaternalGrandparents || wedding.brideMaternalGrandparents) && (
                 <div className="family-divider" />
               )}
 
-              {/* Bride Paternal Grandparents */}
               {wedding.bridePaternalGrandparents && (
                 <>
                   <span className="family-grandparent-label">Paternal Grandparents</span>
@@ -70,28 +75,12 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
                 </>
               )}
 
-              {/* Bride Maternal Grandparents */}
               {wedding.brideMaternalGrandparents && (
                 <>
                   <span className="family-grandparent-label">Maternal Grandparents</span>
-                  <p className="family-grandparent-names" style={{ marginBottom: 0 }}>
+                  <p className="family-grandparent-names">
                     {wedding.brideMaternalGrandparents}
                   </p>
-                </>
-              )}
-
-              {/* Bride Siblings */}
-              {wedding.brideSiblings && wedding.brideSiblings.length > 0 && (
-                <>
-                  <div className="family-divider" style={{ marginTop: '1rem', marginBottom: '1rem' }} />
-                  <span className="family-grandparent-label">Siblings</span>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                    {wedding.brideSiblings.map((sibling, idx) => (
-                      <p key={idx} className="family-grandparent-names" style={{ marginBottom: 0 }}>
-                        {sibling}
-                      </p>
-                    ))}
-                  </div>
                 </>
               )}
             </motion.div>
@@ -99,29 +88,22 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
             {/* Groom's Family Card */}
             <motion.div
               className="family-card"
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, delay: 0.15 }}
             >
-              <span className="family-role">Groom</span>
+              <span className="family-role">Groom&apos;s Family</span>
               <h4 className="family-member-name">
-                {wedding.groomFirstName || "Ajmal"}
+                {wedding.groomFirstName || "Andrey"}
               </h4>
               <span className="family-relation">Son of</span>
-              <p className="family-parents">
-                {formatParents(
-                  wedding.groomFatherName,
-                  wedding.groomMotherName,
-                  "Mr. Hamza Kurikkal OP & Mrs. Subaida MC"
-                )}
-              </p>
+              <p className="family-parents">{groomParents}</p>
 
               {(wedding.groomPaternalGrandparents || wedding.groomMaternalGrandparents) && (
                 <div className="family-divider" />
               )}
 
-              {/* Groom Paternal Grandparents */}
               {wedding.groomPaternalGrandparents && (
                 <>
                   <span className="family-grandparent-label">Paternal Grandparents</span>
@@ -131,35 +113,17 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
                 </>
               )}
 
-              {/* Groom Maternal Grandparents */}
               {wedding.groomMaternalGrandparents && (
                 <>
                   <span className="family-grandparent-label">Maternal Grandparents</span>
-                  <p className="family-grandparent-names" style={{ marginBottom: 0 }}>
+                  <p className="family-grandparent-names">
                     {wedding.groomMaternalGrandparents}
                   </p>
                 </>
               )}
-
-              {/* Groom Siblings */}
-              {wedding.groomSiblings && wedding.groomSiblings.length > 0 && (
-                <>
-                  <div className="family-divider" style={{ marginTop: '1rem', marginBottom: '1rem' }} />
-                  <span className="family-grandparent-label">Siblings</span>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                    {wedding.groomSiblings.map((sibling, idx) => (
-                      <p key={idx} className="family-grandparent-names" style={{ marginBottom: 0 }}>
-                        {sibling}
-                      </p>
-                    ))}
-                  </div>
-                </>
-              )}
             </motion.div>
-
           </div>
         </div>
-
       </div>
     </section>
   );

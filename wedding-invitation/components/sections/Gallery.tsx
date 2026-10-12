@@ -1,7 +1,7 @@
 "use client";
 // components/sections/Gallery.tsx
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Lightbox from "@/components/ui/Lightbox";
 import { GalleryItem } from "@/types";
@@ -53,10 +53,10 @@ export default function Gallery({ items }: GalleryProps) {
       style={{ background: "transparent" }}
     >
       <div className="container-luxury relative z-10 ">
-        <div style={{ marginBottom: "4rem" }}>
+        <div style={{ marginBottom: "3rem" }}>
           <SectionTitle
-            eyebrow="Memories"
-            title="Our Gallery"
+            eyebrow="Галерея"
+            title="Наши моменты"
           />
         </div>
 

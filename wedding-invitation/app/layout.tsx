@@ -20,14 +20,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const groomName = wedding?.groomFirstName && wedding?.groomLastName
     ? `${wedding.groomFirstName} ${wedding.groomLastName}`
-    : wedding?.groomFirstName || "Ajmal";
+    : wedding?.groomFirstName || "Andrey";
 
   const brideName = wedding?.brideFirstName && wedding?.brideLastName
     ? `${wedding.brideFirstName} ${wedding.brideLastName}`
-    : wedding?.brideFirstName || "Shifa kr";
+    : wedding?.brideFirstName || "Ksenia";
 
-  const title = `${wedding?.brideFirstName || "Shifa kr"} & ${wedding?.groomFirstName || "Ajmal"} — Wedding Invitation`;
-  const description = `Join us in celebrating the union of ${brideName || 'Shifa kr'} and ${groomName || 'Ajmal'}. A luxury digital wedding invitation.`;
+  const title = `${brideName} & ${groomName} — Wedding Invitation`;
+  const description = `Join us in celebrating the union of ${brideName} and ${groomName}. A luxury digital wedding invitation.`;
   const weddingDate = wedding?.date
     ? new Date(wedding.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
     : "";
@@ -61,7 +61,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:wght@300;400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Marck+Script&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>

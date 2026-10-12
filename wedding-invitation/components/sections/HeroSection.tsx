@@ -2,224 +2,179 @@
 // components/sections/HeroSection.tsx
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { WeddingData, VenueData } from "@/types";
+import {
+  BotanicalHeartWreath,
+  CameoOvalWreath,
+  VintageFlourish,
+} from "@/components/ui/BotanicalOrnaments";
 
 interface HeroSectionProps {
   wedding: WeddingData;
   venue?: VenueData;
 }
 
-export default function HeroSection({ wedding, venue }: HeroSectionProps) {
+export default function HeroSection({ wedding }: HeroSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.2]);
+  const scale = useTransform(scrollYProgress, [0, 0.85], [1, 0.97]);
 
   const targetDateStr = wedding.nikkahDate || wedding.date;
-  const targetTimeStr = wedding.nikkahTime || wedding.time;
-  const targetVenueStr = venue?.nikkahVenue?.name || wedding.venue;
+  const dateObj = new Date(targetDateStr || "2026-10-01");
 
-  const dateObj = new Date(targetDateStr);
-  const dayName = dateObj.toLocaleDateString("en-US", { weekday: "long" });
-  const dayNum = dateObj.getDate();
-  const monthYear = dateObj.toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
+  const monthNames = [
+    "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+    "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+  ];
+  const dayNum = String(dateObj.getDate() || 1).padStart(2, "0");
+  const month = monthNames[dateObj.getMonth()] || "OCTOBER";
+  const year = dateObj.getFullYear() || 2026;
+  const datePiped = `${dayNum} | ${month} | ${year}`;
 
+  const brideName = wedding.brideFirstName || "Ksenia";
+  const groomName = wedding.groomFirstName || "Andrey";
+  const coupleNames = `${brideName} & ${groomName}`;
 
   return (
     <section
       ref={ref}
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-8 pb-16 px-4"
       style={{ background: "transparent" }}
     >
-
       <motion.div
-        className="relative z-10 w-full max-w-4xl min-h-screen flex flex-col items-center justify-center p-6 md:p-12 lg:p-16"
+        className="relative z-10 w-full max-w-[500px] flex flex-col items-center"
         style={{ opacity, scale }}
       >
+        {/* Subtle Top Editorial Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="w-full flex justify-between items-center text-[10px] sm:text-xs tracking-[0.3em] uppercase text-white/70 mb-5 px-3"
+        >
+          <span>WEDDING INVITATION</span>
+          <span>SAVE THE DATE</span>
+        </motion.div>
 
-        {/* Inner Content Wrapper */}
-        <div className="relative z-20 flex flex-col items-center justify-center text-center w-full gap-4 md:gap-10 lg:gap-4 max-w-2xl md:max-w-4xl lg:max-w-2xl px-6 py-16 md:py-32 lg:py-24">
+        {/* MAIN LUXURY ARCHED INVITATION CARD */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+          className="w-full rounded-t-[180px] sm:rounded-t-[220px] rounded-b-[40px] px-6 sm:px-10 pt-12 pb-14 flex flex-col items-center text-center shadow-2xl relative"
+          style={{
+            background: "linear-gradient(180deg, #F9F6F0 0%, #F3EDE3 50%, #ECE3D5 100%)",
+            border: "1px solid rgba(52, 64, 42, 0.16)",
+            color: "#34402A",
+            boxShadow: "0 22px 60px -15px rgba(18, 25, 14, 0.45)",
+          }}
+        >
+          {/* Subtle interior gold border line */}
+          <div
+            className="absolute inset-2.5 rounded-t-[170px] sm:rounded-t-[210px] rounded-b-[32px] pointer-events-none"
+            style={{ border: "1px dashed rgba(80, 100, 65, 0.25)" }}
+          />
 
+          {/* 1. Header Wreath with Wedding Day & Names */}
+          <div className="relative flex flex-col items-center justify-center my-3 w-full">
+            <BotanicalHeartWreath size={220} color="#38462F" />
 
-          {/* Bismillah */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="mb-12 md:mb-16"
-          >
-            <p
-              className="text-lg md:text-3xl lg:text-xl font-light"
-              style={{ color: "var(--gold)", fontFamily: "'Amiri', 'Traditional Arabic', serif" }}
-            >
-              بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-            </p>
-          </motion.div>
-
-
-          {/* Intro */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 0.4, ease: "easeOut" }}
-            className="font-heading text-[9px] sm:text-[10px] md:text-sm lg:text-xs tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] lg:tracking-[0.25em] uppercase mb-10 md:mb-28 lg:mb-20 w-full max-w-[85%] sm:max-w-xs md:max-w-lg lg:max-w-md mx-auto leading-loose text-center px-2" style={{ color: "var(--text-main)" }}
-          >
-            {wedding.invitationText || "Together with their families"}
-          </motion.p>
-
-
-          {/* Names Section */}
-          <div className="flex flex-col items-center gap-3 md:gap-8 lg:gap-4 w-full text-center">
-            {/* Bride */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, delay: 0.6, ease: "easeOut" }}
-              className="flex flex-col items-center w-full"
-            >
-              <motion.h1
-                className="font-light leading-none mb-1 text-[clamp(2.5rem,6vw,4.5rem)] md:text-[5.5rem] lg:text-[clamp(2.5rem,6vw,4.5rem)]"
-                style={{
-                  fontFamily: "'Great Vibes', cursive",
-                  color: "var(--gold)",
-                  textShadow: "0 2px 10px rgba(212,175,55,0.2)",
-                }}
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
+              <span
+                className="font-script text-3xl sm:text-4xl text-[#34402A] leading-tight"
+                style={{ textShadow: "0 1px 2px rgba(255,255,255,0.8)" }}
               >
-                {wedding.brideFirstName || "Shifa kr"}
-              </motion.h1>
-
-            </motion.div>
-
-
-            {/* AND */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
-              className="py-0"
-            >
-              <span className="font-heading italic text-base md:text-2xl lg:text-lg" style={{ color: "var(--gold-light)" }}>and</span>
-            </motion.div>
-
-
-            {/* Groom */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
-              className="flex flex-col items-center w-full"
-            >
-              <motion.h1
-                className="font-light leading-none mb-1 text-[clamp(2.5rem,6vw,4.5rem)] md:text-[5.5rem] lg:text-[clamp(2.5rem,6vw,4.5rem)]"
-                style={{
-                  fontFamily: "'Great Vibes', cursive",
-                  color: "var(--gold)",
-                  textShadow: "0 2px 10px rgba(212,175,55,0.2)",
-                }}
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                {wedding.groomFirstName || "Ajmal"}
-              </motion.h1>
-
-            </motion.div>
+                Wedding Day
+              </span>
+              <h1 className="font-heading text-base sm:text-lg text-[#34402A] tracking-[0.08em] mt-1 font-semibold">
+                {coupleNames}
+              </h1>
+              <span className="font-body text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-[#546845] mt-1 font-medium">
+                {datePiped}
+              </span>
+            </div>
           </div>
 
+          <VintageFlourish color="#5A6D4B" width={110} className="my-4 opacity-80" />
 
-          {/* Invitation Text */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="font-heading text-[10px] md:text-sm lg:text-xs tracking-[0.2em] md:tracking-[0.3em] lg:tracking-[0.2em] uppercase mt-16 md:mt-32 lg:mt-24 mb-12 md:mb-24 lg:mb-16 max-w-lg md:max-w-2xl lg:max-w-lg leading-loose"
-            style={{ color: "var(--text-main)" }}
-          >
-            Request the honor of your presence<br />at their Nikah ceremony
-          </motion.p>
+          {/* 2. Cameo Oval Portrait Frame */}
+          <div className="relative w-48 h-60 sm:w-52 sm:h-66 my-3 flex items-center justify-center">
+            {/* The SVG Laurel Wreath */}
+            <CameoOvalWreath className="absolute inset-0 w-full h-full pointer-events-none z-20" color="#48593C" />
 
-
-          {/* Date Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 1.4, ease: "easeOut" }}
-            className="flex items-center justify-center gap-6 md:gap-12 lg:gap-10 my-10 md:my-16 lg:my-12 w-full mx-auto"
-          >
-            <div className="flex flex-col items-end justify-center text-right">
-              <span className="font-heading text-[10px] md:text-sm lg:text-xs tracking-[0.2em] uppercase leading-tight" style={{ color: "var(--text-main)" }}>{dayName}</span>
-              <span className="font-heading text-[0.65rem] md:text-xs lg:text-[10px] tracking-[0.1em] mt-1" style={{ color: "var(--text-muted)" }}>{targetTimeStr}</span>
-            </div>
-
-            <div className="flex flex-col items-center justify-center px-2">
-              <span className="font-heading text-4xl md:text-6xl lg:text-5xl font-light" style={{ color: "var(--gold)", lineHeight: 1 }}>{dayNum}</span>
-            </div>
-
-            <div className="flex flex-col items-start justify-center text-left">
-              <span className="font-heading text-[10px] md:text-sm lg:text-xs tracking-[0.2em] uppercase leading-tight" style={{ color: "var(--text-main)" }}>{monthYear.split(' ')[0]}</span>
-              <span className="font-heading text-[0.65rem] md:text-xs lg:text-[10px] tracking-[0.1em] mt-1" style={{ color: "var(--text-muted)" }}>{monthYear.split(' ')[1]}</span>
-            </div>
-          </motion.div>
-
-
-          {/* Venue Info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.6 }}
-            className="flex flex-col items-center gap-2 md:gap-4 lg:gap-2 mt-8 mb-12"
-          >
-            <span className="font-heading text-[0.65rem] md:text-xs lg:text-[10px] tracking-[0.3em] uppercase" style={{ color: "var(--gold-light)" }}>Nikah At</span>
-            <span className="font-heading text-xs md:text-lg lg:text-sm tracking-[0.1em] uppercase" style={{ color: "var(--text-main)" }}>{targetVenueStr}</span>
-          </motion.div>
-
-
-          {/* Footer cursive */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 1.8, ease: "easeOut" }}
-            className="mt-6 md:mt-10 text-center"
-          >
-            <motion.p
-              className="text-xl md:text-4xl lg:text-2xl"
-              style={{ fontFamily: "'Great Vibes', cursive", color: "var(--gold-dark)" }}
-              animate={{ scale: [1, 1.02, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            {/* Oval Portrait Photo */}
+            <div
+              className="relative w-[130px] h-[175px] sm:w-[145px] sm:h-[195px] overflow-hidden rounded-[50%]"
+              style={{
+                boxShadow: "inset 0 0 12px rgba(0,0,0,0.35)",
+              }}
             >
-              Reception to follow
-            </motion.p>
-          </motion.div>
-        </div>
-      </motion.div>
+              <Image
+                src={wedding.bridePhotoUrl || "/images/cameo-portrait.jpg"}
+                alt="Bride & Groom"
+                fill
+                className="object-cover object-center grayscale contrast-105"
+                sizes="(max-width: 640px) 150px, 180px"
+                priority
+              />
+            </div>
+          </div>
 
-      {/* Scroll Down Indicator */}
-      <motion.div
-        className="absolute bottom-8 right-16 md:bottom-12 md:right-28 lg:bottom-16 lg:right-36 flex flex-col items-center gap-2 z-30"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.5, duration: 1 }}
-      >
-        <span className="font-heading text-[8px] md:text-[10px] uppercase tracking-[0.4em]" style={{ color: "var(--gold-light)", writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
-          Scroll
-        </span>
-        <div className="w-[1px] h-12 md:h-20 relative overflow-hidden mt-2" style={{ background: "rgba(212,175,55,0.2)" }}>
+          {/* 3. Welcome Message */}
+          <h2
+            className="font-script text-3xl sm:text-4xl text-[#34402A] mt-5 mb-3 font-normal leading-tight"
+            style={{ textShadow: "0 1px 2px rgba(255,255,255,0.7)" }}
+          >
+            Dear Family &amp; Friends!
+          </h2>
+
+          <p className="font-body text-xs sm:text-sm text-[#4E5E42] max-w-xs leading-relaxed font-light mb-6">
+            {wedding.invitationText ||
+              "Together with our families, we warmly invite you to celebrate our wedding. We would be truly honored to have you share this unforgettable day with us."}
+          </p>
+
+          <VintageFlourish color="#5A6D4B" width={100} className="my-2" />
+
+          {/* 4. Save the Date Subtitle */}
+          <div className="mt-4 mb-2 flex flex-col items-center">
+            <span className="font-script text-2xl sm:text-3xl text-[#34402A]">
+              Save the Date
+            </span>
+            <span className="font-body text-[11px] text-[#556948] italic mt-1">
+              Where our forever begins
+            </span>
+            <span className="font-heading text-xs sm:text-sm tracking-[0.25em] uppercase text-[#34402A] font-semibold mt-1">
+              {datePiped}
+            </span>
+          </div>
+
+          <VintageFlourish color="#5A6D4B" width={140} className="mt-4 opacity-80" />
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="mt-6 flex flex-col items-center gap-1.5 opacity-75"
+        >
+          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-white/70">
+            Scroll to Explore
+          </span>
           <motion.div
-            className="w-full h-full absolute top-0 left-0"
-            style={{ background: "var(--gold)" }}
-            initial={{ y: "-100%" }}
-            animate={{ y: "100%" }}
+            animate={{ y: [0, 5, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
+            className="text-white/60 text-xs"
+          >
+            ↓
+          </motion.div>
+        </motion.div>
       </motion.div>
     </section>
   );

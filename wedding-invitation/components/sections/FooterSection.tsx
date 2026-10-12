@@ -1,6 +1,7 @@
 "use client";
 // components/sections/FooterSection.tsx
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { WeddingData } from "@/types";
 
 interface FooterSectionProps {
@@ -10,177 +11,88 @@ interface FooterSectionProps {
 export default function FooterSection({ wedding }: FooterSectionProps) {
   const handleShare = async () => {
     try {
-      if (navigator.share) {
+      if (typeof window !== "undefined" && navigator.share) {
         await navigator.share({
-          title: `${wedding.brideFirstName} & ${wedding.groomFirstName}'s Wedding`,
-          text: `Join us in celebrating the wedding of ${wedding.brideFirstName} and ${wedding.groomFirstName}!`,
-          url: window.location.origin,
+          title: `${wedding.brideFirstName || "Ksenia"} & ${wedding.groomFirstName || "Andrey"} — Wedding Invitation`,
+          text: `We warmly invite you to celebrate our wedding!`,
+          url: window.location.href,
         });
-      } else {
-        // Fallback: Copy link to clipboard
-        await navigator.clipboard.writeText(window.location.origin);
+      } else if (typeof window !== "undefined") {
+        await navigator.clipboard.writeText(window.location.href);
         alert("Invitation link copied to clipboard!");
       }
     } catch (e) {
-      console.error("Share failed:", e);
+      console.log("Share skipped", e);
     }
   };
 
-  const dateObj = wedding.date ? new Date(wedding.date) : new Date("2026-07-19");
-  const day = dateObj.getDate() || 19;
-  const month = dateObj.toLocaleDateString("en-US", { month: "long" }).toUpperCase() || "JULY";
-  const year = dateObj.getFullYear() || 2026;
-  const mainPlace = wedding.venue ? wedding.venue.split(",").pop()?.trim().toUpperCase() : "IRIKKUR";
-
   return (
-    <footer
-      className="relative overflow-hidden"
-      style={{ background: "transparent", paddingTop: "5.5rem", paddingBottom: "3.5rem" }}
-    >
-      {/* Top gold line */}
-      <div
-        className="absolute top-0 left-0 right-0 h-0.5"
-        style={{ background: "var(--gold-gradient)", opacity: 0.15 }}
-      />
-
-      <div
-        className="absolute inset-0 opacity-0"
-      />
-
-      <div className="container-luxury relative z-10 flex flex-col items-center text-center">
-
+    <footer className="relative pt-6 pb-16 flex flex-col items-center">
+      <div className="container-luxury relative z-10 flex flex-col items-center">
+        {/* CARD 10: CLOSING FOREST PHOTO CARD "WE CAN'T WAIT TO SEE YOU!" */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          className="w-full max-w-[480px] h-[580px] sm:h-[640px] rounded-3xl relative overflow-hidden shadow-2xl flex flex-col justify-end p-8 text-center"
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9 }}
+          style={{
+            border: "1px solid rgba(245, 239, 235, 0.2)",
+          }}
         >
-          <h3
-            className="font-heading text-3xl md:text-4xl"
+          {/* Background image: couple embracing in misty forest with veil */}
+          <Image
+            src="/images/forest-closing.jpg"
+            alt="Bride & Groom in Forest"
+            fill
+            className="object-cover object-center brightness-75 contrast-105"
+            sizes="(max-width: 640px) 100vw, 480px"
+          />
+
+          {/* Dark gradient overlay for text readability */}
+          <div
+            className="absolute inset-0"
             style={{
-              color: "var(--gold)",
-              fontFamily: "'Amiri', serif",
-              fontWeight: 400,
-              letterSpacing: "normal",
+              background:
+                "linear-gradient(180deg, rgba(30, 40, 24, 0.2) 0%, rgba(20, 28, 16, 0.4) 40%, rgba(20, 28, 16, 0.88) 100%)",
             }}
-          >
-            بَارَكَ اللَّهُ لَكُمَا
-          </h3>
-        </motion.div>
+          />
 
-        {/* With Love, & Family Houses */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mt-3 flex flex-col items-center"
-        >
+          {/* Text Content */}
+          <div className="relative z-10 flex flex-col items-center">
+            <p className="font-body text-xs sm:text-sm text-[#F5EFEB] max-w-xs leading-relaxed font-light mb-4 text-shadow">
+              You hold a truly cherished place in our lives. On the most meaningful day of our journey, we cannot wait to have you standing beside us!
+            </p>
 
-        </motion.div><p
-          className="font-heading italic text-sm"
-          style={{ color: "var(--text-muted)", opacity: 0.8 }}
-        >
-          With Love,
-        </p>
-        <p
-          className="font-body text-[10px] md:text-xs tracking-wider mt-1 opacity-70"
-          style={{ color: "var(--text-main)" }}
-        >
-          Two hearts, one soul, a lifetime of love.
-        </p>
-
-        <div style={{ width: "120px", height: "1px", background: "var(--gold-gradient)", opacity: 0.25, margin: "2rem 0" }} />
-
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <h2
-            className="font-heading italic"
-            style={{
-              fontSize: "clamp(2rem, 4vw, 2.75rem)",
-              fontWeight: 300,
-              color: "var(--text-main)",
-            }}
-          >
-            {wedding.brideFirstName || "Shifa kr"} &amp; {wedding.groomFirstName || "Ajmal"}
-          </h2>
-        </motion.div>
-
-        {/* Date and Location strip */}
-        <motion.p
-          className="font-body text-[9px] tracking-[0.25em] uppercase"
-          style={{ color: "var(--gold-light)", opacity: 0.7, marginTop: "1.25rem" }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          {day} &bull; {month} &bull; {year} &bull; WEDDING &bull; {mainPlace}
-        </motion.p>
-
-        {/* Action Links Row (Share & Admin) */}
-        <motion.div
-          className="flex items-center gap-4 justify-center"
-          style={{ marginTop: "2.5rem" }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <button
-            onClick={handleShare}
-            className="footer-btn"
-          >
-            Share Invitation
-          </button>
-          <a
-            href="/admin/dashboard"
-            className="footer-btn"
-          >
-            Admin Panel
-          </a>
-        </motion.div>
-
-        {/* Divider Line */}
-        <div style={{ width: "30px", height: "1px", background: "rgba(212, 175, 55, 0.15)", margin: "1.5rem 0" }} />
-
-        {/* Signature & Copyright Block */}
-        <motion.div
-          className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 justify-center font-body text-[9px] tracking-widest uppercase"
-          style={{ color: "rgba(255,248,241,0.25)" }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <span>© {new Date().getFullYear()} All Rights Reserved</span>
-          <span className="hidden sm:inline opacity-30">•</span>
-          <span>
-            Developed by{" "}
-            <a
-              href="https://reqoir.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-100 transition-opacity"
+            <h2
+              className="font-script text-4xl sm:text-5xl text-[#EBDCBA] mb-6 font-normal leading-tight"
               style={{
-                color: "var(--gold-light)",
-                textDecoration: "none",
-                borderBottom: "1px solid rgba(212, 175, 55, 0.25)",
-                paddingBottom: "1px",
+                textShadow: "0 2px 14px rgba(0, 0, 0, 0.6)",
               }}
             >
-              reqoir
-            </a>
-          </span>
+              See You There!
+            </h2>
+
+            {/* Share / Copy button */}
+            <button
+              onClick={handleShare}
+              className="btn-pill-outline-cream text-[10px] tracking-[0.25em] py-2.5 px-6 cursor-pointer"
+            >
+              SHARE INVITATION
+            </button>
+          </div>
         </motion.div>
 
+        {/* Footer bottom signature */}
+        <div className="mt-12 text-center flex flex-col items-center gap-1.5 opacity-80">
+          <p className="font-script text-xl sm:text-2xl text-[#EBDCBA]">
+            Crafted with love for an unforgettable celebration
+          </p>
+          <p className="font-body text-[10px] tracking-[0.3em] uppercase text-white/50">
+            SAVE THE DATE &middot; DIGITAL WEDDING INVITATION
+          </p>
+        </div>
       </div>
     </footer>
   );
 }
-
-

@@ -10,7 +10,7 @@ interface GoldButtonProps {
   disabled?: boolean;
   className?: string;
   size?: "sm" | "md" | "lg";
-  variant?: "filled" | "outline";
+  variant?: "filled" | "outline" | "cream";
 }
 
 export default function GoldButton({
@@ -23,10 +23,25 @@ export default function GoldButton({
   variant = "filled",
 }: GoldButtonProps) {
   const sizeClasses = {
-    sm: "px-6 py-2 text-xs",
+    sm: "px-6 py-2 text-[10px]",
     md: "px-8 py-3 text-xs",
-    lg: "px-12 py-4 text-sm",
+    lg: "px-10 py-3.5 text-xs",
   };
+
+  if (variant === "cream") {
+    return (
+      <motion.button
+        type={type}
+        onClick={onClick}
+        disabled={disabled}
+        whileHover={{ scale: disabled ? 1 : 1.02, y: disabled ? 0 : -2 }}
+        whileTap={{ scale: disabled ? 1 : 0.98 }}
+        className={`btn-pill-cream ${sizeClasses[size]} ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} ${className}`}
+      >
+        {children}
+      </motion.button>
+    );
+  }
 
   if (variant === "outline") {
     return (
@@ -36,14 +51,7 @@ export default function GoldButton({
         disabled={disabled}
         whileHover={{ scale: disabled ? 1 : 1.02 }}
         whileTap={{ scale: disabled ? 1 : 0.98 }}
-        className={`
-          relative overflow-hidden rounded-full border border-[#D4AF37] 
-          text-[#D4AF37] font-body font-medium tracking-widest uppercase
-          transition-all duration-300
-          ${sizeClasses[size]}
-          ${disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-[#D4AF37] hover:text-[#3A2E2A] cursor-pointer"}
-          ${className}
-        `}
+        className={`btn-pill-outline-cream ${sizeClasses[size]} ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} ${className}`}
       >
         {children}
       </motion.button>
@@ -55,26 +63,10 @@ export default function GoldButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      whileHover={{ scale: disabled ? 1 : 1.03, y: disabled ? 0 : -2 }}
-      whileTap={{ scale: disabled ? 1 : 0.97 }}
-      className={`
-        relative overflow-hidden rounded-full btn-gold font-body font-medium tracking-widest uppercase
-        ${sizeClasses[size]}
-        ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
-        ${className}
-      `}
+      whileHover={{ scale: disabled ? 1 : 1.02, y: disabled ? 0 : -2 }}
+      whileTap={{ scale: disabled ? 1 : 0.98 }}
+      className={`btn-pill-dark ${sizeClasses[size]} ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} ${className}`}
     >
-      {/* Shimmer effect */}
-      <motion.span
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
-          backgroundSize: "200% 100%",
-        }}
-        animate={{ backgroundPosition: ["200% 0", "-200% 0"] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-      />
       <span className="relative z-10">{children}</span>
     </motion.button>
   );
