@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import OpeningScreen from "@/components/sections/OpeningScreen";
 import HeroSection from "@/components/sections/HeroSection";
 import Gallery from "@/components/sections/Gallery";
-import ItinerarySection from "@/components/sections/ItinerarySection";
 import VenueSection from "@/components/sections/VenueSection";
 import FamilySection from "@/components/sections/FamilySection";
 import CountdownSection from "@/components/sections/CountdownSection";
@@ -18,27 +17,38 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // Default data fallback so page renders even without DB
 const DEFAULT_WEDDING: WeddingData = {
-  title: "Wedding Invitation",
-  brideFirstName: "Ksenia",
+  title: "We Are Getting Married",
+  brideFirstName: "Shifa",
   brideLastName: "",
-  groomFirstName: "Andrey",
+  groomFirstName: "Ajmal",
   groomLastName: "",
-  date: "2026-10-01",
-  time: "15:30",
-  venue: "The Grand Estate & Country Club",
-  subtitle: "Where our forever begins",
-  invitationText: "Together with our families, we warmly invite you to celebrate our wedding. We would be truly honored to have you share this unforgettable day with us.",
-  bridePhotoUrl: "/images/cameo-portrait.jpg",
-  brideFatherName: "Alexander",
-  brideMotherName: "Elena",
-  groomFatherName: "Sergey",
-  groomMotherName: "Olga",
+  date: "2026-11-12",
+  time: "05:00 PM",
+  venue: "Wasava Cliff House, Kannur",
+  subtitle: "Two souls, one destiny",
+  invitationText: "Together with their families, we joyfully invite you to celebrate the union of",
+  bridePhotoUrl: "",
+  groomPhotoUrl: "",
+  brideFatherName: "Mamu P",
+  brideMotherName: "Suhra KR",
+  groomFatherName: "Ahammedkutty OM",
+  groomMotherName: "Thahira RM",
+  brideMaternalGrandparents: "Khadheeja & Ummer (late)",
+  bridePaternalGrandparents: "Ayisha & Memi",
+  groomMaternalGrandparents: "",
+  groomPaternalGrandparents: "",
+  brideSiblings: ["Shana", "Shammas", "Rithas", "Shabas"],
+  brideNieces: ["Laiha", "Liba"],
+  groomSiblings: ["Thanveera", "Thabsheera"],
+  groomNieces: ["Amina", "Hanna", "Muhammed"],
+  nikkahDate: "",
+  nikkahTime: "",
 };
 
 const DEFAULT_VENUE: VenueData = {
-  name: "The Grand Estate & Country Club",
-  address: "120 Royal Meadows Parkway, Riverside Estate",
-  googleMapLink: "https://maps.google.com/?q=The+Grand+Estate",
+  name: "Wasava Cliff House",
+  address: "Kannur, Kerala",
+  googleMapLink: "https://maps.google.com/?q=Wasava+Cliff+House+Kannur",
   googleMapEmbed: "",
   parkingInfo: "Complimentary valet parking available",
   accommodation: "Guest accommodations arranged at the venue hotel",
@@ -116,8 +126,7 @@ export default function InvitationPage() {
             <Navbar wedding={wedding} />
             <BackgroundEffects />
             <HeroSection wedding={wedding} venue={venue} />
-            <VenueSection venue={venue} />
-            <ItinerarySection wedding={wedding} venue={venue} />
+            <VenueSection venue={venue} wedding={wedding} />
             <CountdownSection wedding={wedding} />
             <WishesSection />
             <RSVPSection />

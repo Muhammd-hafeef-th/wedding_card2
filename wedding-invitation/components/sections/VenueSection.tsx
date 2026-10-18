@@ -1,34 +1,51 @@
 "use client";
 // components/sections/VenueSection.tsx
 import { motion } from "framer-motion";
-import { VenueData } from "@/types";
+import { VenueData, WeddingData } from "@/types";
 import { VenueEstateSketch, VintageFlourish } from "@/components/ui/BotanicalOrnaments";
 
 interface VenueSectionProps {
   venue: VenueData;
+  wedding?: WeddingData;
 }
 
-export default function VenueSection({ venue }: VenueSectionProps) {
+export default function VenueSection({ venue, wedding }: VenueSectionProps) {
   const venueTitle =
-    venue.nikkahVenue?.name ||
     venue.name ||
-    "The Grand Estate & Country Club";
+    wedding?.venue ||
+    "Wasava Cliff House";
 
   const venueAddress =
-    venue.nikkahVenue?.address ||
     venue.address ||
-    "120 Royal Meadows Parkway, Riverside Estate";
+    wedding?.venue ||
+    "Kannur, Kerala";
 
   const mapLink =
-    venue.nikkahVenue?.googleMapLink ||
     venue.googleMapLink ||
     `https://maps.google.com/?q=${encodeURIComponent(venueAddress)}`;
 
+  const dateStr = wedding?.date || "2026-11-12";
+  const dateObj = new Date(dateStr);
+  const monthNames = [
+    "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+    "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+  ];
+  const dateFormatted = !isNaN(dateObj.getTime())
+    ? `${String(dateObj.getDate()).padStart(2, "0")} | ${monthNames[dateObj.getMonth()]} | ${dateObj.getFullYear()}`
+    : "12 | NOVEMBER | 2026";
+
   return (
-    <section id="venue" className="section-padding relative">
+    <section
+      id="venue"
+      className="relative"
+      style={{
+        paddingTop: "clamp(2rem, 4vh, 3.5rem)",
+        paddingBottom: "clamp(3rem, 6vh, 5rem)",
+      }}
+    >
       <div className="container-luxury relative z-10 flex justify-center">
         <motion.div
-          className="venue-card w-full max-w-[480px] rounded-t-[160px] sm:rounded-t-[200px] rounded-b-3xl relative overflow-hidden"
+          className="venue-card w-full max-w-[480px] rounded-t-[80px] sm:rounded-t-[140px] md:rounded-t-[200px] rounded-b-3xl relative overflow-hidden"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -50,7 +67,7 @@ export default function VenueSection({ venue }: VenueSectionProps) {
 
             {/* Date subtitle */}
             <p className="font-heading text-xs sm:text-sm tracking-[0.3em] uppercase text-[#D8CEB9] mb-3">
-              01 | OCTOBER | 2026
+              {dateFormatted}
             </p>
 
             <VintageFlourish color="#C8BEA8" width={110} className="mb-6 opacity-85" />

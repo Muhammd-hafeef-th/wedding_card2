@@ -33,20 +33,22 @@ export interface IWedding extends Document {
   groomMaternalGrandparents?: string;
   brideSiblings?: string[];
   groomSiblings?: string[];
+  brideNieces?: string[];
+  groomNieces?: string[];
 }
 
 const WeddingSchema = new Schema<IWedding>(
   {
     title: { type: String, default: "We Are Getting Married" },
-    brideFirstName: { type: String, default: "Shifa kr" },
+    brideFirstName: { type: String, default: "Shifa" },
     brideLastName: { type: String, default: "" },
     groomFirstName: { type: String, default: "Ajmal" },
     groomLastName: { type: String, default: "" },
-    date: { type: String, default: "2025-12-20" },
-    time: { type: String, default: "18:00" },
+    date: { type: String, default: "2026-11-12" },
+    time: { type: String, default: "05:00 PM" },
     nikkahDate: { type: String, default: "" },
     nikkahTime: { type: String, default: "" },
-    venue: { type: String, default: "The Grand Palace, New Delhi" },
+    venue: { type: String, default: "Wasava Cliff House, Kannur" },
     subtitle: { type: String, default: "Two souls, one destiny" },
     invitationText: {
       type: String,
@@ -72,6 +74,8 @@ const WeddingSchema = new Schema<IWedding>(
     groomMaternalGrandparents: { type: String, default: "" },
     brideSiblings: { type: [String], default: [] },
     groomSiblings: { type: [String], default: [] },
+    brideNieces: { type: [String], default: [] },
+    groomNieces: { type: [String], default: [] },
   },
   { timestamps: true }
 );

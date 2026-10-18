@@ -13,7 +13,7 @@ export default function FooterSection({ wedding }: FooterSectionProps) {
     try {
       if (typeof window !== "undefined" && navigator.share) {
         await navigator.share({
-          title: `${wedding.brideFirstName || "Ksenia"} & ${wedding.groomFirstName || "Andrey"} — Wedding Invitation`,
+          title: `${wedding.brideFirstName || "Shifa KR"} & ${wedding.groomFirstName || "Ajmal"} — Wedding Invitation`,
           text: `We warmly invite you to celebrate our wedding!`,
           url: window.location.href,
         });

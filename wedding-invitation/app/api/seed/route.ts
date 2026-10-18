@@ -25,7 +25,7 @@ export async function GET() {
     if (!existingWedding) {
       await Wedding.create({
         title: "We Are Getting Married",
-        brideFirstName: "Shifa kr",
+        brideFirstName: "Shifa KR",
         brideLastName: "",
         groomFirstName: "Ajmal",
         groomLastName: "",

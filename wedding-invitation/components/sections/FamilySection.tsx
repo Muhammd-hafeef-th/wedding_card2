@@ -20,13 +20,13 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
   const brideParents = formatParents(
     wedding.brideFatherName,
     wedding.brideMotherName,
-    "Alexander & Elena"
+    "Mamu P & Suhra KR"
   );
 
   const groomParents = formatParents(
     wedding.groomFatherName,
     wedding.groomMotherName,
-    "Sergey & Olga"
+    "Ahammedkutty OM & Thahira RM"
   );
 
   return (
@@ -57,7 +57,7 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
             >
               <span className="family-role">Bride&apos;s Family</span>
               <h4 className="family-member-name">
-                {wedding.brideFirstName || "Ksenia"}
+                {wedding.brideFirstName || "Shifa KR"}
               </h4>
               <span className="family-relation">Daughter of</span>
               <p className="family-parents">{brideParents}</p>
@@ -83,6 +83,25 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
                   </p>
                 </>
               )}
+
+              {wedding.brideSiblings && wedding.brideSiblings.length > 0 && (
+                <>
+                  <div className="family-divider" />
+                  <span className="family-grandparent-label">Siblings</span>
+                  <p className="family-grandparent-names">
+                    {wedding.brideSiblings.join(", ")}
+                  </p>
+                </>
+              )}
+
+              {wedding.brideNieces && wedding.brideNieces.length > 0 && (
+                <>
+                  <span className="family-grandparent-label">Nieces</span>
+                  <p className="family-grandparent-names">
+                    {wedding.brideNieces.join(", ")}
+                  </p>
+                </>
+              )}
             </motion.div>
 
             {/* Groom's Family Card */}
@@ -95,7 +114,7 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
             >
               <span className="family-role">Groom&apos;s Family</span>
               <h4 className="family-member-name">
-                {wedding.groomFirstName || "Andrey"}
+                {wedding.groomFirstName || "Ajmal"}
               </h4>
               <span className="family-relation">Son of</span>
               <p className="family-parents">{groomParents}</p>
@@ -118,6 +137,25 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
                   <span className="family-grandparent-label">Maternal Grandparents</span>
                   <p className="family-grandparent-names">
                     {wedding.groomMaternalGrandparents}
+                  </p>
+                </>
+              )}
+
+              {wedding.groomSiblings && wedding.groomSiblings.length > 0 && (
+                <>
+                  <div className="family-divider" />
+                  <span className="family-grandparent-label">Siblings</span>
+                  <p className="family-grandparent-names">
+                    {wedding.groomSiblings.join(", ")}
+                  </p>
+                </>
+              )}
+
+              {wedding.groomNieces && wedding.groomNieces.length > 0 && (
+                <>
+                  <span className="family-grandparent-label">Nieces &amp; Nephew</span>
+                  <p className="family-grandparent-names">
+                    {wedding.groomNieces.join(", ")}
                   </p>
                 </>
               )}

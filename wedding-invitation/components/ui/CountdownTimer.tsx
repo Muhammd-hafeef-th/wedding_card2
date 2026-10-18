@@ -19,38 +19,37 @@ export default function CountdownTimer({ date, time }: CountdownTimerProps) {
   ];
 
   return (
-    <div className="flex items-center justify-center gap-4 sm:gap-6">
+    <div className="grid grid-cols-4 gap-1.5 sm:gap-6 md:gap-9 w-full max-w-[480px] mx-auto">
       {units.map((unit, idx) => (
-        <div key={idx} className="flex items-center gap-4 sm:gap-6">
-          <div className="flex flex-col items-center">
-            <AnimatePresence mode="popLayout">
+        <div
+          key={idx}
+          className="flex flex-col items-center justify-center py-2 sm:py-3 px-1 sm:px-2 relative"
+          style={{
+            background: "transparent",
+            border: "none",
+            boxShadow: "none",
+          }}
+        >
+          <div className="h-8 sm:h-11 flex items-center justify-center overflow-hidden">
+            <AnimatePresence mode="wait">
               <motion.span
                 key={unit.value}
-                initial={{ opacity: 0, y: 5 }}
+                initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -5 }}
-                transition={{ duration: 0.3 }}
-                className="font-heading text-2xl sm:text-3xl md:text-4xl font-light"
-                style={{ color: "var(--gold)", lineHeight: 1 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.2 }}
+                className="font-heading text-2xl sm:text-3xl md:text-4xl font-light text-[#F4EBD8]"
+                style={{ lineHeight: 1, textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}
               >
                 {String(unit.value).padStart(2, "0")}
               </motion.span>
             </AnimatePresence>
-            <span
-              className="font-body uppercase tracking-[0.2em] text-[7px] sm:text-[8px] mt-1.5 opacity-70"
-              style={{ color: "var(--text-main)" }}
-            >
-              {unit.label}
-            </span>
           </div>
-          {idx < units.length - 1 && (
-            <span
-              className="text-lg opacity-40 font-light"
-              style={{ color: "var(--gold)", transform: "translateY(-6px)" }}
-            >
-              :
-            </span>
-          )}
+          <span
+            className="font-body uppercase tracking-[0.25em] text-[8px] sm:text-[10px] mt-3.5 sm:mt-4 font-medium text-[#D6C58F]"
+          >
+            {unit.label}
+          </span>
         </div>
       ))}
     </div>

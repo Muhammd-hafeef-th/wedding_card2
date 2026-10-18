@@ -16,18 +16,18 @@ export default function OpeningScreen({ wedding, onOpen, onSkip }: OpeningScreen
   const { playMusic } = useAudio();
   const [isOpening, setIsOpening] = useState(false);
 
-  const brideName = wedding.brideFirstName || "Ksenia";
-  const groomName = wedding.groomFirstName || "Andrey";
+  const brideName = wedding.brideFirstName || "Shifa KR";
+  const groomName = wedding.groomFirstName || "Ajmal";
   const coupleNames = `${brideName} & ${groomName}`;
-  const coupleInitials = `${brideName[0] || "K"}${groomName[0] || "A"}`;
+  const coupleInitials = `${brideName[0] || "S"}${groomName[0] || "A"}`;
 
-  const dateObj = new Date(wedding.date || "2026-10-01");
+  const dateObj = new Date(wedding.date || "2026-08-16");
   const monthNames = [
     "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
     "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
   ];
-  const dayNum = String(dateObj.getDate() || 1).padStart(2, "0");
-  const month = monthNames[dateObj.getMonth()] || "OCTOBER";
+  const dayNum = String(dateObj.getDate() || 16).padStart(2, "0");
+  const month = monthNames[dateObj.getMonth()] || "AUGUST";
   const year = dateObj.getFullYear() || 2026;
   const datePiped = `${dayNum} | ${month} | ${year}`;
 

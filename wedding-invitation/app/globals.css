@@ -4,11 +4,11 @@
 
 /* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
-  --bg-main: #36442C;
+  --bg-main: #34422F;
   --bg-olive: #3D4C33;
   --bg-olive-dark: #2B3724;
   --bg-cream: #F5EFEB;
-  --bg-card: #F5EFEB;
+  --bg-card: #747D67;
   --text-main: #F5EFEB;
   --text-olive: #34402A;
   --text-cream: #F5EFEB;
@@ -41,8 +41,7 @@ html {
 }
 
 body {
-  background: var(--bg-main);
-  background-attachment: fixed;
+  background: #34422F;
   color: var(--text-main);
   font-family: 'Montserrat', 'Poppins', sans-serif;
   font-weight: 300;
@@ -50,16 +49,6 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Atmospheric subtle vignette & foliage background */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at 50% 25%, rgba(68, 85, 56, 0.6) 0%, rgba(35, 45, 28, 0.95) 100%);
-  pointer-events: none;
-  z-index: -1;
 }
 
 /* ===== TYPOGRAPHY ===== */

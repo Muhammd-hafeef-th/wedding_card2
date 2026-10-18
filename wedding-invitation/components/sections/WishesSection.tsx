@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GuestWish } from "@/types";
-import { CallaLilyBotanical, VintageFlourish } from "@/components/ui/BotanicalOrnaments";
+import { VintageFlourish } from "@/components/ui/BotanicalOrnaments";
 
 export default function WishesSection() {
   const [wishes, setWishes] = useState<GuestWish[]>([]);
@@ -44,64 +44,9 @@ export default function WishesSection() {
     }
   };
 
-  const paletteColors = [
-    { name: "Olive", hex: "#48593E" },
-    { name: "Sage", hex: "#7E9073" },
-    { name: "Champagne", hex: "#DDD2BF" },
-    { name: "Warm Taupe", hex: "#B9A78E" },
-    { name: "Forest", hex: "#2A3622" },
-  ];
-
   return (
     <section id="wishes" className="section-padding relative">
       <div className="container-luxury relative z-10 flex flex-col items-center gap-14">
-        
-        {/* CARD 5: DRESS CODE */}
-        <motion.div
-          className="w-full max-w-[480px] rounded-t-[160px] sm:rounded-t-[200px] rounded-b-3xl relative overflow-hidden"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.85 }}
-          style={{
-            background: "linear-gradient(180deg, #3E4E34 0%, #2F3C27 100%)",
-            border: "1px solid rgba(245, 239, 235, 0.18)",
-            boxShadow: "0 18px 48px -10px rgba(0, 0, 0, 0.4)",
-          }}
-        >
-          <div className="px-6 sm:px-10 pt-12 pb-12 flex flex-col items-center text-center relative z-10">
-            {/* Title in cursive script */}
-            <h2
-              className="font-script text-3xl sm:text-4xl text-[#F5EFEB] mb-3 leading-tight"
-              style={{ textShadow: "0 2px 8px rgba(0,0,0,0.25)" }}
-            >
-              Dress Code
-            </h2>
-
-            <p className="font-body text-xs sm:text-sm text-[#D7CEBA] max-w-xs leading-relaxed font-light mb-6 opacity-90">
-              We warmly invite you to dress in elegant semi-formal or cocktail attire. To complement the natural aesthetic of our celebration, we suggest neutral, earthy, or soft botanical tones. Please kindly refrain from pure white.
-            </p>
-
-            {/* Color Palette Swatches */}
-            <div className="flex items-center gap-3 my-2">
-              {paletteColors.map((color, idx) => (
-                <div key={idx} className="flex flex-col items-center">
-                  <div
-                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/30 shadow-md transition-transform hover:scale-110"
-                    style={{ backgroundColor: color.hex }}
-                    title={color.name}
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Botanical Calla Lily illustration framing the bottom */}
-            <div className="w-full flex justify-center mt-6 -mb-4">
-              <CallaLilyBotanical color="#EBE3D3" size={170} />
-            </div>
-          </div>
-        </motion.div>
-
         {/* CARD 6: OUR WISHES & GIFT NOTE */}
         <motion.div
           className="w-full max-w-[480px] rounded-3xl relative overflow-hidden"
