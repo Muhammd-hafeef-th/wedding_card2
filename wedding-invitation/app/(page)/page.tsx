@@ -14,6 +14,7 @@ import BackgroundEffects from "@/components/ui/BackgroundEffects";
 import Navbar from "@/components/ui/Navbar";
 import { WeddingData, GalleryItem, VenueData } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAudio } from "@/components/ui/AudioProvider";
 
 // Default data fallback so page renders even without DB
 const DEFAULT_WEDDING: WeddingData = {
@@ -60,6 +61,7 @@ const DEFAULT_VENUE: VenueData = {
 
 export default function InvitationPage() {
   const [isOpen, setIsOpen] = useState(false);
+  const { setShowFloatingButton } = useAudio();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -67,6 +69,11 @@ export default function InvitationPage() {
   const [wedding, setWedding] = useState<WeddingData>(DEFAULT_WEDDING);
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [venue, setVenue] = useState<VenueData>(DEFAULT_VENUE);
+
+  const handleOpenInvitation = () => {
+    setIsOpen(true);
+    setShowFloatingButton(true);
+  };
 
   // Fetch all data on mount
   useEffect(() => {
@@ -107,8 +114,8 @@ export default function InvitationPage() {
           >
             <OpeningScreen
               wedding={wedding}
-              onOpen={() => setIsOpen(true)}
-              onSkip={() => setIsOpen(true)}
+              onOpen={handleOpenInvitation}
+              onSkip={handleOpenInvitation}
             />
           </motion.div>
         )}
