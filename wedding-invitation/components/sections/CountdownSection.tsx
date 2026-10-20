@@ -18,8 +18,8 @@ export default function CountdownSection({ wedding }: CountdownSectionProps) {
       id="countdown"
       className="relative flex items-center justify-center px-4"
       style={{
-        paddingTop: "clamp(3.5rem, 7vh, 5.5rem)",
-        paddingBottom: "clamp(4rem, 8vh, 6.5rem)",
+        paddingTop: "clamp(2.5rem, 5vh, 4rem)",
+        paddingBottom: "clamp(2.5rem, 5vh, 4rem)",
       }}
     >
       <div className="container-luxury relative z-10 flex justify-center w-full">
@@ -37,7 +37,10 @@ export default function CountdownSection({ wedding }: CountdownSectionProps) {
         >
           <div
             style={{
-              padding: "clamp(2rem, 4vh, 3.5rem) clamp(0.5rem, 3vw, 2rem)",
+              paddingTop: "clamp(1.5rem, 3vh, 2.5rem)",
+              paddingBottom: "0.5rem",
+              paddingLeft: "clamp(0.5rem, 3vw, 2rem)",
+              paddingRight: "clamp(0.5rem, 3vw, 2rem)",
             }}
             className="flex flex-col items-center text-center w-full"
           >

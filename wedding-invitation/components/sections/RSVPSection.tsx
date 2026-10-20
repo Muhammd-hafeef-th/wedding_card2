@@ -2,35 +2,35 @@
 // components/sections/RSVPSection.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  BotanicalArchTop,
-  BotanicalArchBottom,
-  VintageFlourish,
-} from "@/components/ui/BotanicalOrnaments";
+import { VintageFlourish } from "@/components/ui/BotanicalOrnaments";
 
 export default function RSVPSection() {
-  const [form, setForm] = useState({
-    guestName: "",
-    phone: "",
-    attendance: "yes",
-    guestCount: 1,
-    message: "",
-  });
+  const [guestName, setGuestName] = useState("");
+  const [attendance, setAttendance] = useState<"yes" | "no">("yes");
+  const [guestCount, setGuestCount] = useState<number>(1);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [submittedName, setSubmittedName] = useState("");
+  const [submittedAttendance, setSubmittedAttendance] = useState<"yes" | "no">("yes");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
+    if (!guestName.trim()) return;
 
+    setStatus("loading");
     try {
       const res = await fetch("/api/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          guestName: guestName.trim(),
+          attendance,
+          guestCount: attendance === "yes" ? Math.max(1, guestCount || 1) : 1,
+        }),
       });
 
       if (res.ok) {
+        setSubmittedName(guestName.trim());
+        setSubmittedAttendance(attendance);
         setStatus("success");
       } else {
         setStatus("error");
@@ -40,241 +40,200 @@ export default function RSVPSection() {
     }
   };
 
+  const handleReset = () => {
+    setGuestName("");
+    setAttendance("yes");
+    setGuestCount(1);
+    setStatus("idle");
+  };
+
   return (
-    <section id="rsvp" className="section-padding relative">
-      <div className="container-luxury relative z-10 flex justify-center">
-        {/* Grand Cream Arch Card containing: Guest Chat, Day-of Contact, RSVP */}
+    <section
+      id="rsvp"
+      className="relative flex justify-center px-4"
+      style={{
+        paddingTop: "clamp(2rem, 4vh, 3.5rem)",
+        paddingBottom: "clamp(2.5rem, 5vh, 4rem)",
+      }}
+    >
+      <div className="container-luxury relative z-10 flex justify-center w-full">
         <motion.div
-          className="w-full max-w-[480px] rounded-t-[160px] sm:rounded-t-[200px] rounded-b-[160px] sm:rounded-b-[200px] shadow-2xl relative overflow-hidden"
-          initial={{ opacity: 0, y: 40 }}
+          className="rsvp-card"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.9 }}
-          style={{
-            background: "linear-gradient(180deg, #F8F4EE 0%, #EFE8DE 100%)",
-            border: "1px solid rgba(52, 64, 42, 0.16)",
-            color: "#34402A",
-          }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8 }}
         >
-          {/* Top Arch Floral Framing */}
-          <div className="w-full flex justify-center pt-8 px-6">
-            <BotanicalArchTop color="#415236" className="w-full max-w-[340px]" />
-          </div>
+          <div className="rsvp-content">
+            <span className="family-role">R.S.V.P.</span>
 
-          <div className="px-6 sm:px-10 pt-2 pb-6 flex flex-col items-center text-center">
-            {/* PART 1: GUEST CHAT */}
-            <div className="w-full flex flex-col items-center my-6">
-              <h2
-                className="font-script text-3xl sm:text-4xl text-[#34402A] mb-3 leading-tight"
-                style={{ textShadow: "0 1px 2px rgba(255,255,255,0.7)" }}
-              >
-                Guest Chat
-              </h2>
-              <p className="font-body text-xs sm:text-sm text-[#4E5E42] max-w-xs leading-relaxed font-light mb-5">
-                We have created a private group chat where you can share photos, connect with other guests, and download gallery pictures after the wedding!
-              </p>
-              <a
-                href="https://t.me"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-pill-dark"
-              >
-                JOIN GUEST CHAT
-              </a>
+            <h2 className="rsvp-title">Will You Join Us?</h2>
+
+            <p className="rsvp-subtitle">
+              Please kindly let us know if you will celebrate with us on our special day.
+            </p>
+
+            {/* Vintage flourish with clear generous spacing */}
+            <div className="rsvp-flourish-wrap">
+              <VintageFlourish color="#526644" width={110} className="opacity-80" />
             </div>
 
-            <VintageFlourish color="#5A6D4B" width={110} className="my-4 opacity-75" />
-
-            {/* PART 2: DAY-OF CONTACT */}
-            <div className="w-full flex flex-col items-center my-6">
-              <h2
-                className="font-script text-3xl sm:text-4xl text-[#34402A] mb-3 leading-tight"
-                style={{ textShadow: "0 1px 2px rgba(255,255,255,0.7)" }}
-              >
-                Wedding Day Contact
-              </h2>
-              <p className="font-body text-xs sm:text-sm text-[#4E5E42] max-w-xs leading-relaxed font-light mb-5">
-                Should you have any questions or require assistance on the day of the wedding, our wedding coordinator will be delighted to guide you.
-              </p>
-              <a
-                href="tel:+1234567890"
-                className="btn-pill-dark"
-              >
-                CALL COORDINATOR
-              </a>
-            </div>
-
-            <VintageFlourish color="#5A6D4B" width={110} className="my-4 opacity-75" />
-
-            {/* PART 3: RSVP QUESTIONNAIRE */}
-            <div className="w-full flex flex-col items-center my-6">
-              <h2
-                className="font-script text-3xl sm:text-4xl text-[#34402A] mb-3 leading-tight"
-                style={{ textShadow: "0 1px 2px rgba(255,255,255,0.7)" }}
-              >
-                RSVP
-              </h2>
-              <p className="font-body text-xs sm:text-sm text-[#4E5E42] max-w-xs leading-relaxed font-light mb-6">
-                Please kindly respond by September 01, 2026, so we can prepare for your presence and celebrate together with joy.
-              </p>
-
-              {/* Questionnaire Form or Expand Button */}
-              {!isFormOpen && status !== "success" ? (
-                <button
-                  onClick={() => setIsFormOpen(true)}
-                  className="btn-pill-dark cursor-pointer"
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="w-full flex flex-col items-center py-4 text-center"
                 >
-                  CONFIRM ATTENDANCE
-                </button>
-              ) : null}
-
-              {/* Interactive Form */}
-              <AnimatePresence>
-                {(isFormOpen || status === "success") && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="w-full overflow-hidden"
+                  <div className="w-14 h-14 rounded-full bg-[#34402A] text-[#F5EFEB] flex items-center justify-center text-2xl mb-3 shadow-md">
+                    ✓
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-[#34402A] mb-1">
+                    Thank You, {submittedName}!
+                  </h3>
+                  <p className="font-body text-xs text-[#526344] max-w-xs mb-5 leading-relaxed">
+                    {submittedAttendance === "yes"
+                      ? "We are delighted to have you join us and look forward to celebrating together!"
+                      : "We are so sorry you cannot attend, but you will be in our hearts and prayers."}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="font-body text-[11px] uppercase tracking-wider text-[#34402A] underline cursor-pointer hover:opacity-80 transition-opacity"
                   >
-                    {status === "success" ? (
-                      <div className="py-6 flex flex-col items-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-[#34402A] text-white flex items-center justify-center text-xl">
-                          ✓
-                        </div>
-                        <h3 className="font-heading text-lg font-semibold text-[#34402A]">
-                          Thank You for Your Response!
-                        </h3>
-                        <p className="font-body text-xs text-[#526344]">
-                          We have received your RSVP and cannot wait to celebrate with you!
-                        </p>
+                    Change Response or RSVP for Another Guest
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  onSubmit={handleSubmit}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="w-full flex flex-col gap-4 text-left"
+                >
+                  {/* Guest Name */}
+                  <div className="rsvp-form-group">
+                    <label className="rsvp-label" htmlFor="rsvp-name">
+                      Your Full Name *
+                    </label>
+                    <input
+                      id="rsvp-name"
+                      type="text"
+                      required
+                      value={guestName}
+                      onChange={(e) => setGuestName(e.target.value)}
+                      placeholder="e.g. John Doe"
+                      className="rsvp-input"
+                    />
+                  </div>
+
+                  {/* Attendance Choice Buttons */}
+                  <div className="rsvp-form-group">
+                    <label className="rsvp-label">Will you be attending? *</label>
+                    <div className="rsvp-choice-grid">
+                      <button
+                        type="button"
+                        onClick={() => setAttendance("yes")}
+                        className={`rsvp-choice-btn ${attendance === "yes" ? "active" : ""}`}
+                      >
+                        <span className="rsvp-choice-icon">✓</span>
+                        <span>Accept</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setAttendance("no")}
+                        className={`rsvp-choice-btn ${attendance === "no" ? "active" : ""}`}
+                      >
+                        <span className="rsvp-choice-icon">✕</span>
+                        <span>Decline</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Guest Count (Typed input + Steppers) */}
+                  {attendance === "yes" && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="rsvp-form-group overflow-hidden"
+                    >
+                      <label className="rsvp-label" htmlFor="guest-count">
+                        Number of Guests Attending
+                      </label>
+                      <div className="rsvp-counter-wrap">
                         <button
-                          onClick={() => {
-                            setStatus("idle");
-                            setIsFormOpen(false);
+                          type="button"
+                          onClick={() => setGuestCount((prev) => Math.max(1, (Number(prev) || 1) - 1))}
+                          className="rsvp-stepper-btn"
+                          aria-label="Decrease guest count"
+                        >
+                          −
+                        </button>
+
+                        <input
+                          id="guest-count"
+                          type="number"
+                          min="1"
+                          max="50"
+                          value={guestCount}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value, 10);
+                            setGuestCount(isNaN(val) ? 1 : Math.max(1, val));
                           }}
-                          className="font-body text-[10px] tracking-widest uppercase text-[#526344] underline mt-2 cursor-pointer"
-                        >
-                          Submit Another Response
-                        </button>
-                      </div>
-                    ) : (
-                      <form onSubmit={handleSubmit} className="w-full text-left mt-2 flex flex-col gap-4">
-                        {/* Name */}
-                        <div>
-                          <label className="font-body text-[10px] uppercase tracking-wider text-[#4A5C3D] font-semibold block mb-1">
-                            Your Full Name *
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={form.guestName}
-                            onChange={(e) => setForm({ ...form, guestName: e.target.value })}
-                            placeholder="John Doe"
-                            className="rsvp-input"
-                          />
-                        </div>
-
-                        {/* Phone */}
-                        <div>
-                          <label className="font-body text-[10px] uppercase tracking-wider text-[#4A5C3D] font-semibold block mb-1">
-                            Phone Number
-                          </label>
-                          <input
-                            type="tel"
-                            value={form.phone}
-                            onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                            placeholder="+1 (555) 000-0000"
-                            className="rsvp-input"
-                          />
-                        </div>
-
-                        {/* Attendance */}
-                        <div className="my-2">
-                          <label className="font-body text-[10px] uppercase tracking-wider text-[#4A5C3D] font-semibold block mb-2">
-                            Will you join our celebration? *
-                          </label>
-                          <div className="flex gap-2">
-                            <button
-                              type="button"
-                              onClick={() => setForm({ ...form, attendance: "yes" })}
-                              className={`flex-1 py-2.5 px-3 rounded-full text-[11px] font-body uppercase tracking-wider transition-all cursor-pointer border ${
-                                form.attendance === "yes"
-                                  ? "bg-[#34402A] text-white border-[#34402A]"
-                                  : "border-[#34402A]/30 text-[#34402A]"
-                              }`}
-                            >
-                              Joyfully Accept
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setForm({ ...form, attendance: "no" })}
-                              className={`flex-1 py-2.5 px-3 rounded-full text-[11px] font-body uppercase tracking-wider transition-all cursor-pointer border ${
-                                form.attendance === "no"
-                                  ? "bg-[#34402A] text-white border-[#34402A]"
-                                  : "border-[#34402A]/30 text-[#34402A]"
-                              }`}
-                            >
-                              Regretfully Decline
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Number of guests */}
-                        {form.attendance === "yes" && (
-                          <div>
-                            <label className="font-body text-[10px] uppercase tracking-wider text-[#4A5C3D] font-semibold block mb-1">
-                              Number of Guests
-                            </label>
-                            <input
-                              type="number"
-                              min={1}
-                              max={10}
-                              value={form.guestCount}
-                              onChange={(e) => setForm({ ...form, guestCount: parseInt(e.target.value) || 1 })}
-                              className="rsvp-input max-w-[80px]"
-                            />
-                          </div>
-                        )}
-
-                        {/* Message */}
-                        <div>
-                          <label className="font-body text-[10px] uppercase tracking-wider text-[#4A5C3D] font-semibold block mb-1">
-                            Dietary Restrictions or Notes
-                          </label>
-                          <input
-                            type="text"
-                            value={form.message}
-                            onChange={(e) => setForm({ ...form, message: e.target.value })}
-                            placeholder="Vegetarian, allergies, etc."
-                            className="rsvp-input"
-                          />
-                        </div>
-
-                        {status === "error" && (
-                          <p className="text-xs text-red-600 text-center">
-                            An error occurred while submitting. Please try again.
-                          </p>
-                        )}
+                          className="rsvp-guest-input"
+                        />
 
                         <button
-                          type="submit"
-                          disabled={status === "loading"}
-                          className="btn-pill-dark w-full mt-3 cursor-pointer"
+                          type="button"
+                          onClick={() => setGuestCount((prev) => (Number(prev) || 1) + 1)}
+                          className="rsvp-stepper-btn"
+                          aria-label="Increase guest count"
                         >
-                          {status === "loading" ? "SENDING..." : "CONFIRM RSVP"}
+                          +
                         </button>
-                      </form>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
 
-          {/* Bottom Arch Floral Framing */}
-          <div className="w-full flex justify-center pb-8 px-6">
-            <BotanicalArchBottom color="#415236" className="w-full max-w-[340px]" />
+                        <span className="rsvp-guest-label">
+                          {guestCount === 1 ? "Person" : "People"}
+                        </span>
+                      </div>
+                      <p className="font-body text-[10px] text-[#637654] mt-0.5 opacity-80">
+                        Type any number or use the + / − buttons
+                      </p>
+                    </motion.div>
+                  )}
+
+                  {status === "error" && (
+                    <p className="text-xs text-red-600 text-center font-body">
+                      Failed to submit RSVP. Please try again.
+                    </p>
+                  )}
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="rsvp-submit-btn"
+                  >
+                    {status === "loading" ? (
+                      <>
+                        <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span>SENDING...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>CONFIRM RSVP</span>
+                      </>
+                    )}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
       </div>

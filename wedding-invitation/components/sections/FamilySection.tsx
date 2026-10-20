@@ -30,10 +30,20 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
   );
 
   return (
-    <section id="families" className="section-padding relative">
+    <section
+      id="families"
+      className="relative"
+      style={{
+        paddingTop: "clamp(1.25rem, 2.5vh, 2rem)",
+        paddingBottom: "clamp(4rem, 7vh, 6rem)",
+      }}
+    >
       <div className="container-luxury relative z-10 flex flex-col items-center">
         {/* Section Heading */}
-        <div className="text-center mb-10">
+        <div
+          className="family-heading-container text-center"
+          style={{ marginBottom: "clamp(3rem, 5vh, 5rem)" }}
+        >
           <h2 className="font-script text-4xl sm:text-5xl text-[#F5EFEB] mb-2 leading-tight">
             With the Blessings of Our Families
           </h2>

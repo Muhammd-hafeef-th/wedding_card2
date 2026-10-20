@@ -1,7 +1,7 @@
 "use client";
 // components/sections/FooterSection.tsx
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Link from "next/link";
 import { WeddingData } from "@/types";
 
 interface FooterSectionProps {
@@ -13,7 +13,7 @@ export default function FooterSection({ wedding }: FooterSectionProps) {
     try {
       if (typeof window !== "undefined" && navigator.share) {
         await navigator.share({
-          title: `${wedding.brideFirstName || "Shifa KR"} & ${wedding.groomFirstName || "Ajmal"} — Wedding Invitation`,
+          title: `${wedding.brideFirstName || "Shifa"} & ${wedding.groomFirstName || "Ajmal"} — Wedding Invitation`,
           text: `We warmly invite you to celebrate our wedding!`,
           url: window.location.href,
         });
@@ -27,71 +27,79 @@ export default function FooterSection({ wedding }: FooterSectionProps) {
   };
 
   return (
-    <footer className="relative pt-6 pb-16 flex flex-col items-center">
-      <div className="container-luxury relative z-10 flex flex-col items-center">
-        {/* CARD 10: CLOSING FOREST PHOTO CARD "WE CAN'T WAIT TO SEE YOU!" */}
+    <footer className="footer-wrap">
+      <div className="footer-content">
         <motion.div
-          className="w-full max-w-[480px] h-[580px] sm:h-[640px] rounded-3xl relative overflow-hidden shadow-2xl flex flex-col justify-end p-8 text-center"
-          initial={{ opacity: 0, y: 40 }}
+          className="flex flex-col items-center w-full"
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.9 }}
-          style={{
-            border: "1px solid rgba(245, 239, 235, 0.2)",
-          }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.85 }}
         >
-          {/* Background image: couple embracing in misty forest with veil */}
-          <Image
-            src="/images/forest-closing.jpg"
-            alt="Bride & Groom in Forest"
-            fill
-            className="object-cover object-center brightness-75 contrast-105"
-            sizes="(max-width: 640px) 100vw, 480px"
-          />
-
-          {/* Dark gradient overlay for text readability */}
+          {/* 1. Arabic Calligraphy blessing: Barakallahu Lakuma */}
           <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(30, 40, 24, 0.2) 0%, rgba(20, 28, 16, 0.4) 40%, rgba(20, 28, 16, 0.88) 100%)",
-            }}
-          />
+            className="footer-arabic"
+            dir="rtl"
+          >
+            بَارَكَ اللهُ لَكُمَا
+          </div>
 
-          {/* Text Content */}
-          <div className="relative z-10 flex flex-col items-center">
-            <p className="font-body text-xs sm:text-sm text-[#F5EFEB] max-w-xs leading-relaxed font-light mb-4 text-shadow">
-              You hold a truly cherished place in our lives. On the most meaningful day of our journey, we cannot wait to have you standing beside us!
-            </p>
+          {/* 2. With Love */}
+          <p className="footer-with-love">
+            With Love,
+          </p>
 
-            <h2
-              className="font-script text-4xl sm:text-5xl text-[#EBDCBA] mb-6 font-normal leading-tight"
-              style={{
-                textShadow: "0 2px 14px rgba(0, 0, 0, 0.6)",
-              }}
-            >
-              See You There!
-            </h2>
+          {/* 3. Subtitle / Quote */}
+          <p className="footer-quote">
+            Two hearts, one soul, a lifetime of love.
+          </p>
 
-            {/* Share / Copy button */}
+          {/* 4. Couple Names in Calligraphy Script */}
+          <h2 className="footer-names">
+            {wedding.brideFirstName || "Shifa"} &amp; {wedding.groomFirstName || "Ajmal"} .
+          </h2>
+
+          {/* 5. Date & Place info line */}
+          <p className="footer-meta">
+            12 &bull; NOVEMBER &bull; 2026 &bull; WEDDING &bull; KANNUR
+          </p>
+
+          {/* 6. Action Buttons */}
+          <div className="footer-btn-group">
             <button
+              type="button"
               onClick={handleShare}
-              className="btn-pill-outline-cream text-[10px] tracking-[0.25em] py-2.5 px-6 cursor-pointer"
+              className="footer-btn footer-btn-primary"
             >
               SHARE INVITATION
             </button>
+
+            <Link href="/admin" className="footer-btn footer-btn-secondary">
+              ADMIN PANEL
+            </Link>
+          </div>
+
+          {/* 7. Subtle Divider */}
+          <div className="footer-divider" />
+
+          {/* 8. Copyright & Credit in two lines */}
+          <div className="footer-credits-wrap">
+            <p className="footer-credits-line">
+              &copy; {new Date().getFullYear()} ALL RIGHTS RESERVED
+            </p>
+            <p className="footer-credits-line">
+              DEVELOPED BY{" "}
+              <a
+                href="https://hafeef-portfolio.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-credits-link"
+              >
+                HAFEEF
+              </a>
+            </p>
           </div>
         </motion.div>
-
-        {/* Footer bottom signature */}
-        <div className="mt-12 text-center flex flex-col items-center gap-1.5 opacity-80">
-          <p className="font-script text-xl sm:text-2xl text-[#EBDCBA]">
-            Crafted with love for an unforgettable celebration
-          </p>
-          <p className="font-body text-[10px] tracking-[0.3em] uppercase text-white/50">
-            SAVE THE DATE &middot; DIGITAL WEDDING INVITATION
-          </p>
-        </div>
       </div>
     </footer>
   );

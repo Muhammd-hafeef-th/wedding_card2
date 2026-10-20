@@ -128,10 +128,12 @@ export default function InvitationPage() {
             <HeroSection wedding={wedding} venue={venue} />
             <VenueSection venue={venue} wedding={wedding} />
             <CountdownSection wedding={wedding} />
-            <WishesSection />
             <RSVPSection />
-            {gallery.length > 0 && <Gallery items={gallery} />}
             <FamilySection wedding={wedding} />
+
+            <WishesSection />
+
+            {gallery.length > 0 && <Gallery items={gallery} />}
             <FooterSection wedding={wedding} />
           </motion.div>
         )}

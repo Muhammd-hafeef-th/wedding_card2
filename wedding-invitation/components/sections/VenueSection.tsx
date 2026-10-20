@@ -90,7 +90,7 @@ export default function VenueSection({ venue, wedding }: VenueSectionProps) {
             {/* Pill button: VIEW ON GOOGLE MAPS */}
             <div className="mt-6">
               <a
-                href={mapLink}
+                href='https://maps.app.goo.gl/XgfNinok5HQMbW18A'
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-pill-cream inline-flex items-center gap-2"
