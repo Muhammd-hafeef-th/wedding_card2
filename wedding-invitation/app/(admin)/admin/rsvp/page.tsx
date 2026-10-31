@@ -2,14 +2,13 @@
 // app/(admin)/admin/rsvp/page.tsx
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Swal from "sweetalert2";
 
 interface RSVPEntry {
   _id: string;
   guestName: string;
   attendance: string;
-  createdAt: string;
   guestCount: number;
+  createdAt: string;
 }
 
 const badgeColors: Record<string, string> = { yes: "#22c55e", no: "#ef4444", maybe: "#f59e0b" };
@@ -63,53 +62,9 @@ export default function RSVPPage() {
   useEffect(() => { fetchRSVPs(); }, [debouncedSearch, filter]);
 
   const handleDelete = async (id: string) => {
-    const result = await Swal.fire({
-      title: "Delete this RSVP?",
-      text: "This guest's response will be permanently removed.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, delete it",
-      cancelButtonText: "Keep it",
-      reverseButtons: true,
-      confirmButtonColor: "#EF4444",
-      cancelButtonColor: "#D4AF37",
-      background: "#FFFDF8",
-      color: "#3A2E2A",
-      iconColor: "#EF4444",
-      backdrop: "rgba(58,46,42,0.4)",
-    });
-
-    if (!result.isConfirmed) return;
-
-    // Loading spinner
-    Swal.fire({
-      title: "Deleting...",
-      text: "Removing the RSVP entry.",
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      showConfirmButton: false,
-      background: "#FFFDF8",
-      color: "#3A2E2A",
-      backdrop: "rgba(58,46,42,0.4)",
-      didOpen: () => { Swal.showLoading(); },
-    });
-
+    if (!confirm("Delete this RSVP?")) return;
     await fetch(`/api/rsvp/${id}`, { method: "DELETE" });
-    await fetchRSVPs();
-
-    // Success toast
-    Swal.fire({
-      toast: true,
-      position: "top-end",
-      icon: "success",
-      title: "RSVP deleted successfully!",
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true,
-      background: "#FFFDF8",
-      color: "#3A2E2A",
-      iconColor: "#D4AF37",
-    });
+    fetchRSVPs();
   };
 
   return (
@@ -222,7 +177,6 @@ export default function RSVPPage() {
               <option value="">All Responses</option>
               <option value="yes">Accepted ✓</option>
               <option value="no">Declined ✗</option>
-              <option value="maybe">Maybe ?</option>
             </select>
           </div>
 

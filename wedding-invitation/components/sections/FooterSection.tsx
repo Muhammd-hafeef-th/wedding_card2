@@ -74,7 +74,7 @@ export default function FooterSection({ wedding }: FooterSectionProps) {
               SHARE INVITATION
             </button>
 
-            <Link href="/admin" className="footer-btn footer-btn-secondary">
+            <Link href="/admin/dashboard" className="footer-btn footer-btn-secondary">
               ADMIN PANEL
             </Link>
           </div>

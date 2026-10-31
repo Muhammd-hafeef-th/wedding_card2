@@ -15,8 +15,21 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ["localhost:3000"],
+      allowedOrigins: [
+        "localhost:3000",
+        "shifaajmalweddingcard.vercel.app",
+        "*.vercel.app",
+      ],
     },
+  },
+  async redirects() {
+    return [
+      {
+        source: "/admin",
+        destination: "/admin/dashboard",
+        permanent: false,
+      },
+    ];
   },
 };
 
