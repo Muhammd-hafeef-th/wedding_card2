@@ -56,12 +56,12 @@ export default function FooterSection({ wedding }: FooterSectionProps) {
 
           {/* 4. Couple Names in Calligraphy Script */}
           <h2 className="footer-names">
-            {wedding.brideFirstName || "Shifa"} &amp; {wedding.groomFirstName || "Ajmal"} .
+            {wedding.groomFirstName || "Ajmal"} &amp; {wedding.brideFirstName || "Shifa"} .
           </h2>
 
           {/* 5. Date & Place info line */}
           <p className="footer-meta">
-            12 &bull; NOVEMBER &bull; 2026 &bull; WEDDING &bull; KANNUR
+            26 &bull; NOVEMBER &bull; 2026 &bull; WEDDING &bull; KANNUR
           </p>
 
           {/* 6. Action Buttons */}

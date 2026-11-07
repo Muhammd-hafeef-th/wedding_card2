@@ -523,8 +523,8 @@ export default function HeroSection({ wedding }: HeroSectionProps) {
   const groomLast = wedding.groomLastName || "";
 
 
-  // Date parsing — Reception date (11-12-2026: Thursday, 12 November 2026)
-  const targetDateStr = wedding.date || "2026-11-12";
+  // Date parsing — Reception date (11-26-2026: Thursday, 26 November 2026)
+  const targetDateStr = wedding.date || "2026-11-26";
   const parseSafeDate = (str: string) => {
     const parts = str.split("-");
     if (parts.length === 3)

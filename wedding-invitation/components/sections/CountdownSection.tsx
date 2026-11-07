@@ -10,8 +10,8 @@ interface CountdownSectionProps {
 }
 
 export default function CountdownSection({ wedding }: CountdownSectionProps) {
-  const targetDate = wedding.date || "2026-11-12";
-  const targetTime = wedding.time || "05:00 PM";
+  const targetDate = wedding.date || "2026-11-26";
+  const targetTime = wedding.time || "10:00 AM";
 
   return (
     <section

@@ -33,7 +33,7 @@ export default function VenueSection({ venue, wedding }: VenueSectionProps) {
     venue.brideVenue?.googleMapLink?.trim() ||
     "https://maps.app.goo.gl/f7qoaw8UCJQXjxQ56";
 
-  const dateStr = wedding?.date || "2026-11-12";
+  const dateStr = wedding?.date || "2026-11-26";
   const dateObj = new Date(dateStr);
   const monthNames = [
     "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
@@ -41,7 +41,7 @@ export default function VenueSection({ venue, wedding }: VenueSectionProps) {
   ];
   const dateFormatted = !isNaN(dateObj.getTime())
     ? `${String(dateObj.getDate()).padStart(2, "0")} | ${monthNames[dateObj.getMonth()]} | ${dateObj.getFullYear()}`
-    : "12 | NOVEMBER | 2026";
+    : "26 | NOVEMBER | 2026";
 
   return (
     <section
