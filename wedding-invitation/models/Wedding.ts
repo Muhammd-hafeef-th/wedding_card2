@@ -48,12 +48,12 @@ const WeddingSchema = new Schema<IWedding>(
     time: { type: String, default: "05:00 PM" },
     nikkahDate: { type: String, default: "" },
     nikkahTime: { type: String, default: "" },
-    venue: { type: String, default: "Wasava Cliff House, Kannur" },
+    venue: { type: String, default: "Kannur, Kerala" },
     subtitle: { type: String, default: "Two souls, one destiny" },
     invitationText: {
       type: String,
       default:
-        "Together with their families, we joyfully invite you to celebrate the union of",
+        "Together with our families, we joyfully invite you to celebrate the wedding of",
     },
     logoUrl: { type: String, default: "" },
     heroBackground: { type: String, default: "" },

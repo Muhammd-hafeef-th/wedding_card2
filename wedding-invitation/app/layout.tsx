@@ -1,12 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "Shifa KR & Ajmal — Wedding Invitation",
-  description: "Join us in celebrating the union of Shifa KR and Ajmal. A luxury digital wedding invitation.",
+  title: "Ajmal & Shifa — Wedding Invitation",
+  description: "Join us in celebrating the wedding of Ajmal and Shifa. A luxury digital wedding invitation.",
   openGraph: {
-    title: "Shifa KR & Ajmal — Wedding Invitation",
-    description: "Join us in celebrating the Nikah ceremony of Shifa KR and Ajmal.",
+    title: "Ajmal & Shifa — Wedding Invitation",
+    description: "Join us in celebrating the Wedding ceremony of Ajmal and Shifa.",
     type: "website",
   },
 };

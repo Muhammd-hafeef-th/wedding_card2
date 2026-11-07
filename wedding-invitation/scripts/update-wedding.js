@@ -26,7 +26,7 @@ const weddingUpdate = {
   time: "05:00 PM",
   nikkahDate: "",
   nikkahTime: "",
-  venue: "Wasava Cliff House, Kannur",
+  venue: "Kannur, Kerala",
   subtitle: "Two souls, one destiny",
   invitationText: "Together with their families, we joyfully invite you to celebrate the union of",
   brideMotherName: "Suhra KR",
@@ -44,12 +44,12 @@ const weddingUpdate = {
 };
 
 const venueUpdate = {
-  name: "Wasava Cliff House",
+  name: "Groom & Bride Residence",
   address: "Kannur, Kerala",
-  googleMapLink: "https://maps.google.com/?q=Wasava+Cliff+House+Kannur",
+  googleMapLink: "",
   nikkahVenue: { name: "", address: "", googleMapLink: "", googleMapEmbed: "" },
-  brideVenue: { name: "", address: "", googleMapLink: "", googleMapEmbed: "" },
-  groomVenue: { name: "", address: "", googleMapLink: "", googleMapEmbed: "" },
+  brideVenue: { name: "Bride's Residence", address: "Paisayi, Irikkur", googleMapLink: "https://maps.app.goo.gl/f7qoaw8UCJQXjxQ56", googleMapEmbed: "" },
+  groomVenue: { name: "Groom's Residence", address: "Chakkarakkal, Kannur", googleMapLink: "https://maps.app.goo.gl/j33aP8861WeXgY2n6", googleMapEmbed: "" },
 };
 
 async function run() {
@@ -75,6 +75,33 @@ async function run() {
       { returnDocument: "after", upsert: true }
     );
     console.log("Venue collection updated successfully!");
+
+    // Clean up any remaining "wasava" mentions across all collections
+    const collections = await db.listCollections().toArray();
+    for (const colInfo of collections) {
+      const col = db.collection(colInfo.name);
+      if (colInfo.name === "weddings") {
+        await col.updateMany(
+          { venue: { $regex: /wasava/i } },
+          { $set: { venue: "Kannur, Kerala" } }
+        );
+      }
+      if (colInfo.name === "venues") {
+        await col.updateMany(
+          { name: { $regex: /wasava/i } },
+          { $set: { name: "Groom & Bride Residence" } }
+        );
+        await col.updateMany(
+          { address: { $regex: /wasava/i } },
+          { $set: { address: "Kannur, Kerala" } }
+        );
+        await col.updateMany(
+          { googleMapLink: { $regex: /wasava/i } },
+          { $set: { googleMapLink: "" } }
+        );
+      }
+    }
+    console.log("Database checked and cleared of any 'wasava' references.");
 
     await mongoose.disconnect();
     console.log("Done.");

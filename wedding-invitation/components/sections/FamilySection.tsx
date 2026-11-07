@@ -57,62 +57,7 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
 
         <div className="family-wrapper">
           <div className="family-grid">
-            {/* Bride's Family Card */}
-            <motion.div
-              className="family-card"
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="family-role">Bride&apos;s Family</span>
-              <h4 className="family-member-name">
-                {wedding.brideFirstName || "Shifa KR"}
-              </h4>
-              <span className="family-relation">Daughter of</span>
-              <p className="family-parents">{brideParents}</p>
 
-              {(wedding.bridePaternalGrandparents || wedding.brideMaternalGrandparents) && (
-                <div className="family-divider" />
-              )}
-
-              {wedding.bridePaternalGrandparents && (
-                <>
-                  <span className="family-grandparent-label">Paternal Grandparents</span>
-                  <p className="family-grandparent-names">
-                    {wedding.bridePaternalGrandparents}
-                  </p>
-                </>
-              )}
-
-              {wedding.brideMaternalGrandparents && (
-                <>
-                  <span className="family-grandparent-label">Maternal Grandparents</span>
-                  <p className="family-grandparent-names">
-                    {wedding.brideMaternalGrandparents}
-                  </p>
-                </>
-              )}
-
-              {wedding.brideSiblings && wedding.brideSiblings.length > 0 && (
-                <>
-                  <div className="family-divider" />
-                  <span className="family-grandparent-label">Siblings</span>
-                  <p className="family-grandparent-names">
-                    {wedding.brideSiblings.join(", ")}
-                  </p>
-                </>
-              )}
-
-              {wedding.brideNieces && wedding.brideNieces.length > 0 && (
-                <>
-                  <span className="family-grandparent-label">Nieces</span>
-                  <p className="family-grandparent-names">
-                    {wedding.brideNieces.join(", ")}
-                  </p>
-                </>
-              )}
-            </motion.div>
 
             {/* Groom's Family Card */}
             <motion.div
@@ -166,6 +111,63 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
                   <span className="family-grandparent-label">Nieces &amp; Nephew</span>
                   <p className="family-grandparent-names">
                     {wedding.groomNieces.join(", ")}
+                  </p>
+                </>
+              )}
+            </motion.div>
+
+            {/* Bride's Family Card */}
+            <motion.div
+              className="family-card"
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="family-role">Bride&apos;s Family</span>
+              <h4 className="family-member-name">
+                {wedding.brideFirstName || "Shifa KR"}
+              </h4>
+              <span className="family-relation">Daughter of</span>
+              <p className="family-parents">{brideParents}</p>
+
+              {(wedding.bridePaternalGrandparents || wedding.brideMaternalGrandparents) && (
+                <div className="family-divider" />
+              )}
+
+              {wedding.bridePaternalGrandparents && (
+                <>
+                  <span className="family-grandparent-label">Paternal Grandparents</span>
+                  <p className="family-grandparent-names">
+                    {wedding.bridePaternalGrandparents}
+                  </p>
+                </>
+              )}
+
+              {wedding.brideMaternalGrandparents && (
+                <>
+                  <span className="family-grandparent-label">Maternal Grandparents</span>
+                  <p className="family-grandparent-names">
+                    {wedding.brideMaternalGrandparents}
+                  </p>
+                </>
+              )}
+
+              {wedding.brideSiblings && wedding.brideSiblings.length > 0 && (
+                <>
+                  <div className="family-divider" />
+                  <span className="family-grandparent-label">Siblings</span>
+                  <p className="family-grandparent-names">
+                    {wedding.brideSiblings.join(", ")}
+                  </p>
+                </>
+              )}
+
+              {wedding.brideNieces && wedding.brideNieces.length > 0 && (
+                <>
+                  <span className="family-grandparent-label">Nieces</span>
+                  <p className="family-grandparent-names">
+                    {wedding.brideNieces.join(", ")}
                   </p>
                 </>
               )}

@@ -22,7 +22,7 @@ export default function OpeningScreen({ wedding, onOpen, onSkip }: OpeningScreen
 
   const brideName = wedding.brideFirstName || "Shifa";
   const groomName = wedding.groomFirstName || "Ajmal";
-  const coupleNames = `${brideName} & ${groomName}`;
+  const coupleNames = `${groomName} & ${brideName}`;
 
   // Complete opening and transition to HeroSection
   const handleFinishAndOpen = useCallback(() => {

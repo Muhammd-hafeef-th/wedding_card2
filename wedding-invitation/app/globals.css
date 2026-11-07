@@ -358,7 +358,7 @@ body {
   border-bottom: 1.5px solid rgba(52, 64, 42, 0.25);
   padding: 0.6rem 0.25rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #34402A;
   outline: none;
   transition: all 0.3s ease;
@@ -866,6 +866,10 @@ body {
 .wish-modal-card {
   width: 100%;
   max-width: 440px;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
   border-radius: 20px;
   background: linear-gradient(180deg, #FAF7F2 0%, #F5EFEB 100%);
   color: #34402A;
@@ -876,6 +880,19 @@ body {
   text-align: center;
 }
 
+.wish-modal-card::-webkit-scrollbar {
+  width: 5px;
+}
+
+.wish-modal-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wish-modal-card::-webkit-scrollbar-thumb {
+  background: rgba(52, 64, 42, 0.2);
+  border-radius: 4px;
+}
+
 .wish-textarea {
   width: 100%;
   border: 1.5px solid rgba(52, 64, 42, 0.22);
@@ -883,12 +900,23 @@ body {
   background: #FFFFFF;
   padding: 0.75rem 1rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #34402A;
   outline: none;
   resize: vertical;
   transition: all 0.2s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) inset;
+}
+
+/* Prevent iOS / mobile Safari auto-zoom on input focus */
+@media screen and (max-width: 768px) {
+  input,
+  textarea,
+  select,
+  .rsvp-input,
+  .wish-textarea {
+    font-size: 16px !important;
+  }
 }
 
 .wish-textarea:focus {
@@ -1203,21 +1231,26 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
 .intro-poster-image {
   position: absolute;
   inset: 0;
-  margin: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   pointer-events: none;
 }
 
 @media (min-width: 768px) {
   .intro-fullscreen-video {
-    object-fit: contain;
-    height: 100vh;
-    width: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     max-width: 100vw;
   }
 }

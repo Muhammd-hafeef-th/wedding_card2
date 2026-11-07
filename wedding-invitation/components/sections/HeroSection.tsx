@@ -522,17 +522,6 @@ export default function HeroSection({ wedding, venue }: HeroSectionProps) {
   const groomName = wedding.groomFirstName || "Ajmal";
   const groomLast = wedding.groomLastName || "";
 
-  // Venue formatting: smartly split multi-part venue into title and location
-  const rawVenue =
-    wedding.venue ||
-    venue?.name ||
-    "Wasava Cliff House, Kannur";
-  const venueParts = rawVenue.split(",").map((s) => s.trim()).filter(Boolean);
-  const venueMain = venueParts.length > 1 ? venueParts[0] : rawVenue;
-  const venueSub =
-    venueParts.length > 1
-      ? venueParts.slice(1).join(", ")
-      : venue?.address || "Kannur";
 
   // Date parsing — Reception date (11-12-2026: Thursday, 12 November 2026)
   const targetDateStr = wedding.date || "2026-11-12";
@@ -550,10 +539,10 @@ export default function HeroSection({ wedding, venue }: HeroSectionProps) {
   ];
   const isValid = !isNaN(dateObj.getTime());
   const dayOfWeek = isValid ? dayNames[dateObj.getDay()] : "THURSDAY";
-  const dayNum = isValid ? dateObj.getDate() : 12;
+  const dayNum = isValid ? dateObj.getDate() : 26;
   const month = isValid ? monthNames[dateObj.getMonth()] : "NOVEMBER";
   const year = isValid ? dateObj.getFullYear() : 2026;
-  const eventTime = wedding.time || "05:00 PM";
+  const eventTime = wedding.time || "10:00 AM";
 
   return (
     <section
@@ -636,11 +625,35 @@ export default function HeroSection({ wedding, venue }: HeroSectionProps) {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.25, duration: 0.9 }}
             >
-              <span>TOGETHER WITH THEIR FAMILIES, WE JOYFULLY INVITE YOU</span>
-              <span>TO CELEBRATE THE UNION OF</span>
+              <span>TOGETHER WITH OUR FAMILIES, WE JOYFULLY INVITE YOU</span>
+              <span>TO CELEBRATE THE WEDDING OF</span>
             </motion.div>
 
-            {/* 2. Bride Name */}
+            {/* 2. Groom Name */}
+            <motion.div
+              className="inv-name-block"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.9 }}
+            >
+              <h2 className="inv-person-name">{groomName.toUpperCase()}</h2>
+              {groomLast && (
+                <p className="inv-surname">{groomLast.toUpperCase()}</p>
+              )}
+            </motion.div>
+
+
+            {/* 3. Decorative 'and' */}
+            <motion.div
+              className="inv-amp-container"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.55, duration: 0.8 }}
+            >
+              <span className="inv-ampersand">and</span>
+            </motion.div>
+
+            {/* 4. Bride Name */}
             <motion.div
               className="inv-name-block"
               initial={{ opacity: 0, y: 10 }}
@@ -653,28 +666,6 @@ export default function HeroSection({ wedding, venue }: HeroSectionProps) {
               )}
             </motion.div>
 
-            {/* 3. Decorative 'and' */}
-            <motion.div
-              className="inv-amp-container"
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.55, duration: 0.8 }}
-            >
-              <span className="inv-ampersand">and</span>
-            </motion.div>
-
-            {/* 4. Groom Name */}
-            <motion.div
-              className="inv-name-block"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.9 }}
-            >
-              <h2 className="inv-person-name">{groomName.toUpperCase()}</h2>
-              {groomLast && (
-                <p className="inv-surname">{groomLast.toUpperCase()}</p>
-              )}
-            </motion.div>
 
             {/* 5. Request of presence */}
             <motion.div
@@ -713,9 +704,9 @@ export default function HeroSection({ wedding, venue }: HeroSectionProps) {
               transition={{ delay: 1.05, duration: 0.9 }}
             >
               <p className="inv-venue-tag">RECEPTION AT</p>
-              <p className="inv-venue-main">{venueMain.toUpperCase()}</p>
-              {venueSub && <p className="inv-venue-sub">{venueSub.toUpperCase()}</p>}
+              <p className="inv-venue-main">Groom's & Bride Residence</p>
             </motion.div>
+
           </div>
         </motion.div>
       </motion.div>

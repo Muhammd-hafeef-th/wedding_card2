@@ -14,7 +14,7 @@ export default function Navbar({ wedding }: NavbarProps) {
 
   // Format wedding date for navbar
   const formatWeddingDate = () => {
-    if (!wedding?.date) return "12 NOVEMBER 2026";
+    if (!wedding?.date) return "26 NOVEMBER 2026";
     const parts = wedding.date.split("-");
     if (parts.length === 3 && parts[0].length === 4) {
       const year = parts[0];
@@ -46,11 +46,10 @@ export default function Navbar({ wedding }: NavbarProps) {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.5 }}
-      className={`fixed top-0 left-0 w-full z-40 flex justify-between items-center px-4 sm:px-8 transition-all duration-300 pointer-events-none ${
-        isScrolled
+      className={`fixed top-0 left-0 w-full z-40 flex justify-between items-center px-4 sm:px-8 transition-all duration-300 pointer-events-none ${isScrolled
           ? "py-2.5 bg-[#2B3724]/85 backdrop-blur-md border-b border-[#B89F70]/20 shadow-md"
           : "py-4 sm:py-5 bg-transparent"
-      }`}
+        }`}
     >
       <div
         className="font-script pointer-events-auto text-[#EBDCBA] select-none"

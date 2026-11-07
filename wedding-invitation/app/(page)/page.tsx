@@ -25,7 +25,7 @@ const DEFAULT_WEDDING: WeddingData = {
   groomLastName: "",
   date: "2026-11-12",
   time: "05:00 PM",
-  venue: "Wasava Cliff House, Kannur",
+  venue: "Kannur, Kerala",
   subtitle: "Two souls, one destiny",
   invitationText: "Together with their families, we joyfully invite you to celebrate the union of",
   bridePhotoUrl: "",
@@ -47,15 +47,25 @@ const DEFAULT_WEDDING: WeddingData = {
 };
 
 const DEFAULT_VENUE: VenueData = {
-  name: "Wasava Cliff House",
+  name: "Groom & Bride Residence",
   address: "Kannur, Kerala",
-  googleMapLink: "https://maps.google.com/?q=Wasava+Cliff+House+Kannur",
+  googleMapLink: "",
   googleMapEmbed: "",
-  parkingInfo: "Complimentary valet parking available",
-  accommodation: "Guest accommodations arranged at the venue hotel",
-  imageUrl: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200",
-  groomVenue: { name: "", address: "", googleMapLink: "", googleMapEmbed: "" },
-  brideVenue: { name: "", address: "", googleMapLink: "", googleMapEmbed: "" },
+  parkingInfo: "",
+  accommodation: "",
+  imageUrl: "",
+  groomVenue: {
+    name: "Groom's Residence",
+    address: "Chakkarakkal, Kannur",
+    googleMapLink: "https://maps.app.goo.gl/j33aP8861WeXgY2n6",
+    googleMapEmbed: "",
+  },
+  brideVenue: {
+    name: "Bride's Residence",
+    address: "Paisayi, Irikkur",
+    googleMapLink: "https://maps.app.goo.gl/f7qoaw8UCJQXjxQ56",
+    googleMapEmbed: "",
+  },
   nikkahVenue: { name: "", address: "", googleMapLink: "", googleMapEmbed: "" },
 };
 
