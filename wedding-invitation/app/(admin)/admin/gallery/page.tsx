@@ -288,6 +288,7 @@ export default function GalleryAdminPage() {
               {item.type === "video" ? (
                 <video src={item.url} className="w-full h-full object-cover" />
               ) : (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img src={item.url} alt={item.caption || ""} className="w-full h-full object-cover" />
               )}
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ background: "rgba(58,46,42,0.85)", backdropFilter: "blur(4px)" }}>

@@ -48,9 +48,13 @@ export default function OpeningScreen({ wedding, onOpen, onSkip }: OpeningScreen
       } catch {
         // audio skip error ignored
       }
-      handleFinishAndOpen();
+      if (onSkip) {
+        onSkip();
+      } else {
+        handleFinishAndOpen();
+      }
     },
-    [playMusic, handleFinishAndOpen]
+    [playMusic, handleFinishAndOpen, onSkip]
   );
 
   // Monitor video readiness and set up mobile-compliant media attributes
@@ -152,6 +156,7 @@ export default function OpeningScreen({ wedding, onOpen, onSkip }: OpeningScreen
       transition={{ duration: 0.45, ease: "easeInOut" }}
     >
       {/* 1. HIGH-RES STATIC POSTER: Always present behind video, eliminating blank background */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/images/envelope-poster.jpg"
         alt="Wedding Invitation Envelope"

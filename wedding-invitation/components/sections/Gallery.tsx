@@ -126,6 +126,7 @@ export default function Gallery({ items }: GalleryProps) {
                       onMouseLeave={(e) => (e.target as HTMLVideoElement).pause()}
                     />
                   ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={item.url}
                       alt={item.caption || "Gallery"}

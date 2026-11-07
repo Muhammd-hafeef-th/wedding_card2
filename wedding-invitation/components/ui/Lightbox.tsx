@@ -2,7 +2,6 @@
 // components/ui/Lightbox.tsx
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { GalleryItem } from "@/types";
 
 interface LightboxProps {
@@ -92,6 +91,7 @@ export default function Lightbox({
             />
           ) : (
             <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={current.url}
                 alt={current.caption || "Gallery image"}

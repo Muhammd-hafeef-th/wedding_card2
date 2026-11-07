@@ -1,7 +1,6 @@
 "use client";
 // components/admin/ImageUpload.tsx
 import { useState, useRef } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface ImageUploadProps {
@@ -67,6 +66,7 @@ export default function ImageUpload({ value, onChange, folder = "wedding", label
           className="relative w-full rounded-xl overflow-hidden"
           style={{ height: 160, border: "1px solid rgba(212,175,55,0.2)" }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={value} alt="Preview" className="w-full h-full object-cover" />
           <button
             onClick={() => onChange("")}

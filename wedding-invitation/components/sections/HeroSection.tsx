@@ -507,7 +507,7 @@ const NATURAL_FLOWERS = [
 // ─────────────────────────────────────────────────────────────────────────────
 //  Hero Section Component
 // ─────────────────────────────────────────────────────────────────────────────
-export default function HeroSection({ wedding, venue }: HeroSectionProps) {
+export default function HeroSection({ wedding }: HeroSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -704,7 +704,7 @@ export default function HeroSection({ wedding, venue }: HeroSectionProps) {
               transition={{ delay: 1.05, duration: 0.9 }}
             >
               <p className="inv-venue-tag">RECEPTION AT</p>
-              <p className="inv-venue-main">Groom's & Bride Residence</p>
+              <p className="inv-venue-main">Groom&apos;s &amp; Bride Residence</p>
             </motion.div>
 
           </div>

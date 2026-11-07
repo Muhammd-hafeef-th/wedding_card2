@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Swal from "sweetalert2";
-import { FiLock, FiInfo, FiServer, FiDatabase, FiShield, FiCloud, FiMail } from "react-icons/fi";
+import { FiLock } from "react-icons/fi";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -125,14 +125,6 @@ export default function SettingsPage() {
       });
     }
   };
-
-  const sysInfo = [
-    { label: "Framework", value: "Next.js 15", icon: FiServer },
-    { label: "Database", value: "MongoDB", icon: FiDatabase },
-    { label: "Authentication", value: "NextAuth v5", icon: FiShield },
-    { label: "Storage", value: "Cloudinary", icon: FiCloud },
-    { label: "Admin Email", value: "admin@wedding.com", icon: FiMail, highlight: true },
-  ];
 
   return (
     <div style={{ padding: "clamp(1rem, 2.2vw, 1.75rem)", minHeight: "100vh", background: "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(212,175,55,0.05) 100%)" }}>
