@@ -2,7 +2,7 @@
 // components/sections/VenueSection.tsx
 import { motion } from "framer-motion";
 import { VenueData, WeddingData } from "@/types";
-import { VenueEstateSketch, VintageFlourish } from "@/components/ui/BotanicalOrnaments";
+import { VenueResidenceSketch, VintageFlourish } from "@/components/ui/BotanicalOrnaments";
 
 interface VenueSectionProps {
   venue: VenueData;
@@ -164,9 +164,9 @@ export default function VenueSection({ venue, wedding }: VenueSectionProps) {
 
             <VintageFlourish color="#C8BEA8" width={100} className="mb-3 opacity-85" />
 
-            {/* Hand-drawn architectural estate sketch */}
-            <div className="w-full max-w-[270px] my-1 px-2 opacity-95">
-              <VenueEstateSketch color="#EDE4D2" />
+            {/* Hand-drawn architectural family residences sketch */}
+            <div className="w-full max-w-[310px] sm:max-w-[340px] my-1 px-1 opacity-95">
+              <VenueResidenceSketch color="#EDE4D2" />
             </div>
 
             {/* Two Venues Container */}

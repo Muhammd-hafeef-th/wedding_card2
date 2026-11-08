@@ -118,8 +118,8 @@ export function CameoOvalWreath({ className = "", color = "#3E4E34" }: { classNa
   );
 }
 
-// 3. Architectural Vintage Estate Sketch for Venue ("ЗАГОРОДНЫЙ КЛУБ ГОЛИЦЫН")
-export function VenueEstateSketch({ className = "", color = "#E9E3D5" }: { className?: string; color?: string }) {
+// 3. Architectural Vintage Family Residences Sketch for Venue (Groom & Bride Houses)
+export function VenueResidenceSketch({ className = "", color = "#E9E3D5" }: { className?: string; color?: string }) {
   return (
     <svg
       viewBox="0 0 500 240"
@@ -127,94 +127,202 @@ export function VenueEstateSketch({ className = "", color = "#E9E3D5" }: { class
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Decorative Ribbon Banner on Top */}
+      {/* 1. Ribbon Banner: FAMILY RESIDENCES */}
       <g stroke={color} strokeWidth="1.2">
-        <path d="M 160 38 L 340 38 L 350 48 L 340 58 L 160 58 L 150 48 Z" fill="none" />
+        <path
+          d="M 135 22 L 365 22 L 352 33 L 365 44 L 135 44 L 148 33 Z"
+          fill="none"
+        />
         <text
           x="250"
-          y="51"
+          y="37"
           fill={color}
           textAnchor="middle"
-          fontSize="11"
-          fontFamily="'Cormorant Garamond', serif"
-          letterSpacing="0.25em"
+          fontSize="11.5"
+          fontFamily="'Cormorant Garamond', Georgia, serif"
+          letterSpacing="0.24em"
           fontWeight="600"
           stroke="none"
         >
-          THE GRAND ESTATE
+          FAMILY RESIDENCES
         </text>
       </g>
 
-      {/* Main Roof Arch & Pediment */}
-      <g stroke={color} strokeWidth="1.2" opacity="0.9">
-        {/* Classical Central Pediment */}
-        <path d="M 180 85 L 250 58 L 320 85 Z" fill="none" />
-        <circle cx="250" cy="74" r="5" stroke={color} strokeWidth="1" />
-        {/* Estate Wings Entablature */}
-        <path d="M 70 95 L 430 95" />
-        <path d="M 60 102 L 440 102" />
+      {/* 2. Left House: Groom's Residence (X centered ~135) */}
+      <g stroke={color} strokeWidth="1.2" opacity="0.95">
+        {/* Main Sloped Gable Roof */}
+        <path d="M 75 106 L 135 62 L 195 106" strokeWidth="1.5" fill="none" />
+        <path d="M 68 111 L 202 111" strokeWidth="1.2" />
 
-        {/* Central Portico / Dome Arch */}
-        <path d="M 210 102 L 210 185" strokeWidth="1.5" />
-        <path d="M 290 102 L 290 185" strokeWidth="1.5" />
-        <path d="M 220 185 C 220 145 280 145 280 185 Z" strokeWidth="1.2" />
-        <path d="M 250 145 L 250 185" strokeWidth="0.8" strokeDasharray="2 2" />
+        {/* Roof Finial & Ridge */}
+        <line x1="135" y1="62" x2="135" y2="53" strokeWidth="1.2" />
+        <circle cx="135" cy="51" r="2.5" fill={color} stroke="none" />
 
-        {/* Columns & Colonnade */}
-        <line x1="120" y1="102" x2="120" y2="185" strokeWidth="1" />
-        <line x1="150" y1="102" x2="150" y2="185" strokeWidth="1" />
-        <line x1="180" y1="102" x2="180" y2="185" strokeWidth="1" />
-        <line x1="320" y1="102" x2="320" y2="185" strokeWidth="1" />
-        <line x1="350" y1="102" x2="350" y2="185" strokeWidth="1" />
-        <line x1="380" y1="102" x2="380" y2="185" strokeWidth="1" />
+        {/* Traditional Roof Tiles / Ridge Texture */}
+        <line x1="90" y1="101" x2="135" y2="68" strokeWidth="0.8" opacity="0.55" />
+        <line x1="180" y1="101" x2="135" y2="68" strokeWidth="0.8" opacity="0.55" />
+        <line x1="105" y1="106" x2="135" y2="84" strokeWidth="0.8" opacity="0.55" />
+        <line x1="165" y1="106" x2="135" y2="84" strokeWidth="0.8" opacity="0.55" />
 
-        {/* Arched Windows on Left Wing */}
-        <path d="M 85 145 C 85 125 105 125 105 145 L 105 170 L 85 170 Z" />
-        <line x1="95" y1="128" x2="95" y2="170" strokeWidth="0.8" />
-        <line x1="85" y1="145" x2="105" y2="145" strokeWidth="0.8" />
+        {/* Gable Attic Window (Circular Louvred Vent) */}
+        <circle cx="135" cy="84" r="7" strokeWidth="0.9" />
+        <line x1="128" y1="84" x2="142" y2="84" strokeWidth="0.7" />
+        <line x1="135" y1="77" x2="135" y2="91" strokeWidth="0.7" />
 
-        <path d="M 130 145 C 130 125 142 125 142 145 L 142 170 L 130 170 Z" />
-        <path d="M 160 145 C 160 125 172 125 172 145 L 172 170 L 160 170 Z" />
+        {/* House Walls */}
+        <line x1="82" y1="111" x2="82" y2="185" strokeWidth="1.4" />
+        <line x1="188" y1="111" x2="188" y2="185" strokeWidth="1.4" />
 
-        {/* Arched Windows on Right Wing */}
-        <path d="M 395 145 C 395 125 415 125 415 145 L 415 170 L 395 170 Z" />
-        <line x1="405" y1="128" x2="405" y2="170" strokeWidth="0.8" />
-        <line x1="395" y1="145" x2="415" y2="145" strokeWidth="0.8" />
+        {/* Left Multi-pane Residential Window */}
+        <rect x="94" y="126" width="18" height="26" rx="2" strokeWidth="0.9" fill="none" />
+        <line x1="103" y1="126" x2="103" y2="152" strokeWidth="0.6" />
+        <line x1="94" y1="139" x2="112" y2="139" strokeWidth="0.6" />
+        <line x1="91" y1="154" x2="115" y2="154" strokeWidth="1.1" />
 
-        <path d="M 328 145 C 328 125 340 125 340 145 L 340 170 L 328 170 Z" />
-        <path d="M 358 145 C 358 125 370 125 370 145 L 370 170 L 358 170 Z" />
+        {/* Right Multi-pane Residential Window */}
+        <rect x="158" y="126" width="18" height="26" rx="2" strokeWidth="0.9" fill="none" />
+        <line x1="167" y1="126" x2="167" y2="152" strokeWidth="0.6" />
+        <line x1="158" y1="139" x2="176" y2="139" strokeWidth="0.6" />
+        <line x1="155" y1="154" x2="179" y2="154" strokeWidth="1.1" />
 
-        {/* Balustrade & Parapet */}
-        <path d="M 70 85 L 180 85" strokeWidth="0.8" />
-        <path d="M 320 85 L 430 85" strokeWidth="0.8" />
-        <line x1="90" y1="85" x2="90" y2="95" />
-        <line x1="110" y1="85" x2="110" y2="95" />
-        <line x1="130" y1="85" x2="130" y2="95" />
-        <line x1="150" y1="85" x2="150" y2="95" />
-        <line x1="170" y1="85" x2="170" y2="95" />
-        <line x1="330" y1="85" x2="330" y2="95" />
-        <line x1="350" y1="85" x2="350" y2="95" />
-        <line x1="370" y1="85" x2="370" y2="95" />
-        <line x1="390" y1="85" x2="390" y2="95" />
-        <line x1="410" y1="85" x2="410" y2="95" />
+        {/* Welcoming Front Porch & Veranda Entrance */}
+        <path d="M 122 185 L 122 138 C 122 130 148 130 148 138 L 148 185" strokeWidth="1.1" fill="none" />
+        <line x1="135" y1="138" x2="135" y2="185" strokeWidth="0.7" />
 
-        {/* Foundation & Steps */}
-        <line x1="50" y1="185" x2="450" y2="185" strokeWidth="1.5" />
-        <line x1="40" y1="190" x2="460" y2="190" strokeWidth="1.2" />
-        <line x1="30" y1="195" x2="470" y2="195" strokeWidth="1" />
+        {/* Traditional Hanging Wedding Brass Lantern */}
+        <line x1="135" y1="130" x2="135" y2="137" strokeWidth="0.8" />
+        <polygon points="132,140 138,140 136,146 134,146" fill={color} stroke="none" />
 
-        {/* Courtyard Fountain / Lawn Motif */}
-        <path d="M 230 205 C 230 198 270 198 270 205 L 275 215 L 225 215 Z" strokeWidth="0.8" />
-        <path d="M 250 198 L 250 192" strokeWidth="1" />
-        <circle cx="250" cy="190" r="1.5" fill={color} />
+        {/* Veranda Entrance Steps */}
+        <line x1="114" y1="185" x2="156" y2="185" strokeWidth="1.3" />
+        <line x1="110" y1="189" x2="160" y2="189" strokeWidth="1" />
+      </g>
 
-        {/* Surrounding Vintage Garden Foliage Sketch */}
-        <path d="M 25 185 C 20 170 35 155 45 160 C 55 165 52 185 50 185" strokeWidth="0.8" strokeDasharray="2 1" />
-        <path d="M 455 185 C 450 170 465 155 475 160 C 485 165 480 185 478 185" strokeWidth="0.8" strokeDasharray="2 1" />
+      {/* 3. Right House: Bride's Residence (X centered ~365) */}
+      <g stroke={color} strokeWidth="1.2" opacity="0.95">
+        {/* Main Sloped Gable Roof */}
+        <path d="M 305 106 L 365 62 L 425 106" strokeWidth="1.5" fill="none" />
+        <path d="M 298 111 L 432 111" strokeWidth="1.2" />
+
+        {/* Roof Finial & Ridge */}
+        <line x1="365" y1="62" x2="365" y2="53" strokeWidth="1.2" />
+        <circle cx="365" cy="51" r="2.5" fill={color} stroke="none" />
+
+        {/* Traditional Roof Tiles / Ridge Texture */}
+        <line x1="320" y1="101" x2="365" y2="68" strokeWidth="0.8" opacity="0.55" />
+        <line x1="410" y1="101" x2="365" y2="68" strokeWidth="0.8" opacity="0.55" />
+        <line x1="335" y1="106" x2="365" y2="84" strokeWidth="0.8" opacity="0.55" />
+        <line x1="395" y1="106" x2="365" y2="84" strokeWidth="0.8" opacity="0.55" />
+
+        {/* Gable Attic Window */}
+        <circle cx="365" cy="84" r="7" strokeWidth="0.9" />
+        <line x1="358" y1="84" x2="372" y2="84" strokeWidth="0.7" />
+        <line x1="365" y1="77" x2="365" y2="91" strokeWidth="0.7" />
+
+        {/* House Walls */}
+        <line x1="312" y1="111" x2="312" y2="185" strokeWidth="1.4" />
+        <line x1="418" y1="111" x2="418" y2="185" strokeWidth="1.4" />
+
+        {/* Left Multi-pane Residential Window */}
+        <rect x="324" y="126" width="18" height="26" rx="2" strokeWidth="0.9" fill="none" />
+        <line x1="333" y1="126" x2="333" y2="152" strokeWidth="0.6" />
+        <line x1="324" y1="139" x2="342" y2="139" strokeWidth="0.6" />
+        <line x1="321" y1="154" x2="345" y2="154" strokeWidth="1.1" />
+
+        {/* Right Multi-pane Residential Window */}
+        <rect x="388" y="126" width="18" height="26" rx="2" strokeWidth="0.9" fill="none" />
+        <line x1="397" y1="126" x2="397" y2="152" strokeWidth="0.6" />
+        <line x1="388" y1="139" x2="406" y2="139" strokeWidth="0.6" />
+        <line x1="385" y1="154" x2="409" y2="154" strokeWidth="1.1" />
+
+        {/* Welcoming Front Porch & Veranda Entrance */}
+        <path d="M 352 185 L 352 138 C 352 130 378 130 378 138 L 378 185" strokeWidth="1.1" fill="none" />
+        <line x1="365" y1="138" x2="365" y2="185" strokeWidth="0.7" />
+
+        {/* Traditional Hanging Wedding Brass Lantern */}
+        <line x1="365" y1="130" x2="365" y2="137" strokeWidth="0.8" />
+        <polygon points="362,140 368,140 366,146 364,146" fill={color} stroke="none" />
+
+        {/* Veranda Entrance Steps */}
+        <line x1="344" y1="185" x2="386" y2="185" strokeWidth="1.3" />
+        <line x1="340" y1="189" x2="390" y2="189" strokeWidth="1" />
+      </g>
+
+      {/* 4. Center Wedding Floral Arch & Courtyard Pathway Connecting Both Residences */}
+      <g stroke={color} strokeWidth="1" opacity="0.9">
+        {/* Botanical Wedding Archway */}
+        <path
+          d="M 215 185 L 215 142 C 215 114 285 114 285 142 L 285 185"
+          strokeWidth="1.2"
+          fill="none"
+        />
+        <path
+          d="M 222 185 L 222 145 C 222 122 278 122 278 145 L 278 185"
+          strokeWidth="0.8"
+          strokeDasharray="2 2"
+          fill="none"
+        />
+
+        {/* Entwined Botanical Floral Vine on Arch */}
+        <path
+          d="M 210 152 C 216 138 228 125 240 118 C 248 114 252 114 260 118 C 272 125 284 138 290 152"
+          strokeWidth="0.9"
+        />
+        <circle cx="232" cy="128" r="2.2" fill={color} stroke="none" />
+        <circle cx="268" cy="128" r="2.2" fill={color} stroke="none" />
+        <circle cx="250" cy="116" r="2.5" fill={color} stroke="none" />
+
+        {/* Central Wedding Chandelier / Lantern */}
+        <line x1="250" y1="116" x2="250" y2="130" strokeWidth="0.8" />
+        <circle cx="250" cy="133" r="3" fill={color} stroke="none" />
+
+        {/* Courtyard Garden Stepping Stones */}
+        <ellipse cx="250" cy="176" rx="8" ry="3" strokeWidth="0.7" opacity="0.6" fill="none" />
+        <ellipse cx="236" cy="182" rx="6" ry="2.5" strokeWidth="0.7" opacity="0.6" fill="none" />
+        <ellipse cx="264" cy="182" rx="6" ry="2.5" strokeWidth="0.7" opacity="0.6" fill="none" />
+      </g>
+
+      {/* 5. Framing Kannur / Kerala Palms & Botanical Garden Shrubbery */}
+      <g stroke={color} strokeWidth="1" opacity="0.85">
+        {/* Left Tropical Palm Tree */}
+        <path d="M 44 185 C 44 148 50 116 56 90" strokeWidth="1.5" />
+        <path d="M 56 90 C 38 80 20 90 12 108" strokeWidth="0.9" />
+        <path d="M 56 90 C 44 74 28 72 16 80" strokeWidth="0.9" />
+        <path d="M 56 90 C 56 68 50 58 38 54" strokeWidth="0.9" />
+        <path d="M 56 90 C 68 70 78 68 88 74" strokeWidth="0.9" />
+        <path d="M 56 90 C 72 82 82 94 86 108" strokeWidth="0.9" />
+
+        {/* Right Tropical Palm Tree */}
+        <path d="M 456 185 C 456 148 450 116 444 90" strokeWidth="1.5" />
+        <path d="M 444 90 C 462 80 480 90 488 108" strokeWidth="0.9" />
+        <path d="M 444 90 C 456 74 472 72 484 80" strokeWidth="0.9" />
+        <path d="M 444 90 C 444 68 450 58 462 54" strokeWidth="0.9" />
+        <path d="M 444 90 C 432 70 422 68 412 74" strokeWidth="0.9" />
+        <path d="M 444 90 C 428 82 418 94 414 108" strokeWidth="0.9" />
+
+        {/* Foundation Garden Foliage */}
+        <path
+          d="M 28 185 C 24 172 38 165 48 172 C 58 162 70 172 68 185"
+          strokeWidth="0.8"
+          strokeDasharray="2 1"
+        />
+        <path
+          d="M 432 185 C 430 172 442 165 452 172 C 462 162 474 172 472 185"
+          strokeWidth="0.8"
+          strokeDasharray="2 1"
+        />
+
+        {/* Base Foundation Ground Lines */}
+        <line x1="16" y1="185" x2="484" y2="185" strokeWidth="1.5" />
+        <line x1="10" y1="190" x2="490" y2="190" strokeWidth="1.1" />
+        <line x1="25" y1="194" x2="475" y2="194" strokeWidth="0.7" opacity="0.6" />
       </g>
     </svg>
   );
 }
+
+// Backward-compatible alias
+export const VenueEstateSketch = VenueResidenceSketch;
 
 // 4. Botanical Arch Top Framing (Card 4 "Тайминг" and Card 7 "Наш чат")
 export function BotanicalArchTop({ className = "", color = "#3E4E34" }: { className?: string; color?: string }) {
