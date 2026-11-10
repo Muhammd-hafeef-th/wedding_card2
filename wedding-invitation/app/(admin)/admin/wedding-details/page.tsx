@@ -110,7 +110,11 @@ export default function WeddingDetailsPage() {
     </div>
   );
 
-  const dynamicArrayField = (key: "brideSiblings" | "groomSiblings", label: string) => {
+  const dynamicArrayField = (
+    key: "brideSiblings" | "groomSiblings" | "brideBrothersInLaw" | "groomBrothersInLaw",
+    label: string,
+    addBtnLabel?: string
+  ) => {
     const list = data[key] || [];
     return (
       <div className="flex flex-col gap-3">
@@ -125,7 +129,7 @@ export default function WeddingDetailsPage() {
                 newList[index] = e.target.value;
                 setData({ ...data, [key]: newList });
               }}
-              placeholder="e.g. Brother: John Doe"
+              placeholder={key.includes("BrothersInLaw") ? "e.g. Name" : "e.g. Brother: John Doe"}
               style={{ ...inputStyle, flex: 1 }}
               onFocus={(e) => {
                 e.target.style.borderColor = "#D4AF37";
@@ -170,7 +174,7 @@ export default function WeddingDetailsPage() {
           onMouseEnter={(e) => (e.currentTarget.style.background = "#FAF7F0")}
           onMouseLeave={(e) => (e.currentTarget.style.background = "#FFFDF8")}
         >
-          + Add Sibling
+          + Add {addBtnLabel || label}
         </button>
       </div>
     );
@@ -272,7 +276,8 @@ export default function WeddingDetailsPage() {
               {field("groomPaternalGrandparents", "Paternal Grandparents")}
               {field("groomMaternalGrandparents", "Maternal Grandparents")}
             </div>
-            {dynamicArrayField("groomSiblings", "Siblings")}
+            {dynamicArrayField("groomSiblings", "Siblings", "Sibling")}
+            {dynamicArrayField("groomBrothersInLaw", "Brothers-in-law", "Brother-in-law")}
           </motion.div>
 
           <motion.div style={cardStyle} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
@@ -286,7 +291,8 @@ export default function WeddingDetailsPage() {
               {field("bridePaternalGrandparents", "Paternal Grandparents")}
               {field("brideMaternalGrandparents", "Maternal Grandparents")}
             </div>
-            {dynamicArrayField("brideSiblings", "Siblings")}
+            {dynamicArrayField("brideSiblings", "Siblings", "Sibling")}
+            {dynamicArrayField("brideBrothersInLaw", "Brothers-in-law", "Brother-in-law")}
           </motion.div>
         </div>
 

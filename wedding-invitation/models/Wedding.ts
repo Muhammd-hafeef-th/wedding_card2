@@ -33,6 +33,8 @@ export interface IWedding extends Document {
   groomMaternalGrandparents?: string;
   brideSiblings?: string[];
   groomSiblings?: string[];
+  brideBrothersInLaw?: string[];
+  groomBrothersInLaw?: string[];
   brideNieces?: string[];
   groomNieces?: string[];
 }
@@ -74,6 +76,8 @@ const WeddingSchema = new Schema<IWedding>(
     groomMaternalGrandparents: { type: String, default: "" },
     brideSiblings: { type: [String], default: [] },
     groomSiblings: { type: [String], default: [] },
+    brideBrothersInLaw: { type: [String], default: [] },
+    groomBrothersInLaw: { type: [String], default: [] },
     brideNieces: { type: [String], default: [] },
     groomNieces: { type: [String], default: [] },
   },

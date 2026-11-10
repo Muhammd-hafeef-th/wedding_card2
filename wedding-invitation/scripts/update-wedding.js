@@ -34,12 +34,14 @@ const weddingUpdate = {
   brideMaternalGrandparents: "Khadheeja & Ummer (late)",
   bridePaternalGrandparents: "Ayisha & Memi",
   brideSiblings: ["Shana", "Shammas", "Rithas", "Shabas"],
+  brideBrothersInLaw: ["Sayed"],
   brideNieces: ["Laiha", "Liba"],
   groomMotherName: "Thahira RM",
   groomFatherName: "Ahammedkutty OM",
   groomMaternalGrandparents: "",
   groomPaternalGrandparents: "",
   groomSiblings: ["Thanveera", "Thabsheera"],
+  groomBrothersInLaw: ["Sajeer", "Ramnas"],
   groomNieces: ["Amina", "Hanna", "Muhammed"],
 };
 

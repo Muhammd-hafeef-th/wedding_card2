@@ -34,6 +34,8 @@ export interface WeddingData {
   groomMaternalGrandparents?: string;
   brideSiblings?: string[];
   groomSiblings?: string[];
+  brideBrothersInLaw?: string[];
+  groomBrothersInLaw?: string[];
   brideNieces?: string[];
   groomNieces?: string[];
   updatedAt?: string;

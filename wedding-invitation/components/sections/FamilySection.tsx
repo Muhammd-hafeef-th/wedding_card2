@@ -106,6 +106,17 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
                 </>
               )}
 
+              {wedding.groomBrothersInLaw && wedding.groomBrothersInLaw.length > 0 && (
+                <>
+                  <span className="family-grandparent-label">
+                    {wedding.groomBrothersInLaw.length > 1 ? "Brothers-in-law" : "Brother-in-law"}
+                  </span>
+                  <p className="family-grandparent-names">
+                    {wedding.groomBrothersInLaw.join(", ")}
+                  </p>
+                </>
+              )}
+
               {wedding.groomNieces && wedding.groomNieces.length > 0 && (
                 <>
                   <span className="family-grandparent-label">Nieces &amp; Nephew</span>
@@ -159,6 +170,17 @@ export default function FamilySection({ wedding }: FamilySectionProps) {
                   <span className="family-grandparent-label">Siblings</span>
                   <p className="family-grandparent-names">
                     {wedding.brideSiblings.join(", ")}
+                  </p>
+                </>
+              )}
+
+              {wedding.brideBrothersInLaw && wedding.brideBrothersInLaw.length > 0 && (
+                <>
+                  <span className="family-grandparent-label">
+                    {wedding.brideBrothersInLaw.length > 1 ? "Brothers-in-law" : "Brother-in-law"}
+                  </span>
+                  <p className="family-grandparent-names">
+                    {wedding.brideBrothersInLaw.join(", ")}
                   </p>
                 </>
               )}
